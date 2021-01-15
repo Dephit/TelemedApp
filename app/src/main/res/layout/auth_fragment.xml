@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthFragment">
+
+    <TextView
+        android:id="@+id/auth_title_text"
+        style="@style/BlackTitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:text="@string/auth_title_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/email_text"
+        style="@style/BlackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_9sdp"
+        android:text="@string/email_text"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toTopOf="@+id/email_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/email_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/auth_title_text"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:id="@+id/password_text"
+        style="@style/BlackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_9sdp"
+        android:text="@string/password_text"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/password_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+        app:layout_constraintVertical_bias="1" />
+
+    <TextView
+        android:id="@+id/error_text"
+        style="@style/ErrorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_9sdp"
+        android:text="@string/auth_error_text"
+        android:textAlignment="center"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authorize_button"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/email_error_text"
+        style="@style/ErrorText13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_9sdp"
+        android:text="@string/email_error_text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/email_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/recovery_password_link"
+        style="@style/BlackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_9sdp"
+        android:clickable="true"
+        android:text="@string/forgot_password_text"
+        android:textColor="@color/primary_button_text_color"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+        app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@+id/password_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+        app:layout_constraintVertical_bias="1" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email_edit_text"
+        style="@style/EditStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_17sdp"
+        android:layout_marginTop="@dimen/_63sdp"
+        android:layout_marginEnd="@dimen/_17sdp"
+        android:ems="10"
+        android:hapticFeedbackEnabled="true"
+        android:hint="@string/your_email"
+        android:inputType="textPersonName"
+        android:outlineProvider="bounds"
+        android:textAppearance="@style/EditTextStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auth_title_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/password_edit_text"
+        style="@style/EditStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_17sdp"
+        android:layout_marginTop="@dimen/_55sdp"
+        android:layout_marginEnd="@dimen/_17sdp"
+        android:duplicateParentState="false"
+        android:ellipsize="end"
+        android:ems="10"
+        android:hapticFeedbackEnabled="true"
+        android:hint="@string/your_password"
+        android:outlineProvider="bounds"
+        android:paddingEnd="@dimen/_40sdp"
+        android:password="false"
+        android:singleLine="true"
+        android:textAppearance="@style/EditTextStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <ImageView
+        android:id="@+id/password_toggle"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:src="@drawable/password_tougle_drawable"
+        app:layout_constraintBottom_toBottomOf="@+id/password_edit_text"
+        app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@+id/password_edit_text"
+        app:layout_constraintTop_toTopOf="@+id/password_edit_text" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/authorize_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/authorize_button"
+        app:layout_constraintTop_toBottomOf="@+id/error_text"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/authorize_button"
+        style="@style/ButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="@string/authorize_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/password_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/password_edit_text"
+        app:layout_constraintVertical_bias="0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

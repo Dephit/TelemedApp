@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/authFragment">
+
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.app.telemed.SplashActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.app.telemed.AuthFragment"
+        android:label="auth_fragment"
+        tools:layout="@layout/auth_fragment" >
+
+        <action
+            android:id="@+id/action_authFragment_to_passwordRecoveryDest"
+            app:destination="@id/passwordRecoveryDest"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/authFragment" >
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRecoveryDest"
+        android:name="com.app.telemed.PasswordRecoveryFragment"
+        android:label="password_recovery_fragment"
+        tools:layout="@layout/password_recovery_fragment" >
+
+    </fragment>
+</navigation>

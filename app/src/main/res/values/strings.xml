@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TelemedApp</string>
+    <string name="auth_title_text">Авторизация в приложении</string>
+    <string name="your_email">Ваша почта</string>
+    <string name="email_text">Эл.почта</string>
+    <string name="password_text">Пароль</string>
+    <string name="forgot_password_text">Забыли пароль?</string>
+    <string name="your_password">Ваш пароль</string>
+    <string name="authorize_text">Авторизоваться</string>
+    <string name="auth_error_text">Пароль иили эл.почта введены\nневерно</string>
+    <string name="email_error_text">Введите эл.почту</string>
+
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BlackTitleTextStyle" parent="BlackText">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">@dimen/_20sdp</item>
+    </style>
+
+    <style name="BlackText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/black_text_color</item>
+    </style>
+
+    <style name="GrayText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/gray_text_color</item>
+    </style>
+
+    <style name="EditTextStyle" parent="GrayText">
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="InputStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/gray_text_color</item>
+        <item name="android:background">@drawable/edit_outline</item>
+    </style>
+
+    <style name="EditStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/gray_text_color</item>
+        <item name="android:paddingStart">@dimen/_12sdp</item>
+        <item name="android:background">@drawable/edit_outline</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingTop">@dimen/_8sdp</item>
+        <item name="android:paddingBottom">@dimen/_10sdp</item>
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/primary_button_text_color</item>
+        <item name="android:height">@dimen/_40sdp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/white_text_toucheble</item>
+    </style>
+
+    <style name="ErrorText13" parent="@style/ErrorText">
+        <item name="android:textSize">@dimen/_13sdp</item>
+    </style>
+
+    <style name="ErrorText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textColor">@color/red_color_failure</item>
+    </style>
+
+    <style name="WhiteTextPressed">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/white_text_toucheble</item>
+    </style>
+
+    <style name="WhiteTextPressed16" parent="WhiteTextPressed">
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+</resources>
