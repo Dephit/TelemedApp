@@ -41,10 +41,23 @@
         android:label="password_recovery_fragment"
         tools:layout="@layout/password_recovery_fragment" >
 
+        <action
+            android:id="@+id/action_passwordRecoveryDest_to_passwordLinkSentFragment"
+            app:destination="@id/passwordLinkSentFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/authFragment"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/lessonScheduleFragment"
         android:name="com.app.telemed.LessonScheduleFragment"
         android:label="lesson_schedule_fragment"
         tools:layout="@layout/lesson_schedule_fragment" />
+    <fragment
+        android:id="@+id/passwordLinkSentFragment"
+        android:name="com.app.telemed.PasswordLinkSentFragment"
+        android:label="fragment_password_link_sent"
+        tools:layout="@layout/fragment_password_link_sent" />
 </navigation>

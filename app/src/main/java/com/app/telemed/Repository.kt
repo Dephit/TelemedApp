@@ -18,9 +18,17 @@ class RepositoryImpl(api: Api): Repository{
         }
     }
 
+    override suspend fun restoreEmail(email: String): Flow<Int> {
+        return flow {
+            kotlinx.coroutines.delay(2000)
+            emit(if(email.contains("0")) 1 else -1)
+        }
+    }
+
 }
 
 interface Repository{
     fun getClient():String
     suspend fun logIn(email: String, pass: String): Flow<Int>
+    suspend fun restoreEmail(email: String): Flow<Int>
 }

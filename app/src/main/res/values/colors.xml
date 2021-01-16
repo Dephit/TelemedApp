@@ -12,6 +12,7 @@
     <color name="primary_button_color">#2492E1</color>
     <color name="primary_button_color_pressed">#074674</color>
     <color name="secondary_button_color">#F8D06B</color>
+    <color name="secondary_button_color_pressed">#8D7334</color>
     <color name="green_color_succsess">#5FC885</color>
     <color name="red_color_failure">#FF6A6A</color>
     <color name="black_text_color">#333333</color>

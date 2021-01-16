@@ -28,8 +28,6 @@ class AuthViewModel @ViewModelInject constructor(
                 savedStateHandle.getLiveData(AUTH_STATE)
             else MutableLiveData(AuthState.Normal)
 
-    fun getName() = repository.getClient()
-
     fun authorize(email: String, pass: String) {
         if(!isValidEmail(email)){
             authState.postValue(AuthState.Error)

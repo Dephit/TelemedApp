@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TelemedApp</string>
     <string name="auth_title_text">Авторизация в приложении</string>
+    <string name="password_recovery_text">Восстановление пароля</string>
+    <string name="we_will_sent_your_pass_text">Мы вышлим вам на почту ссылку для восстановления</string>
     <string name="your_email">Ваша почта</string>
     <string name="email_text">Эл.почта</string>
     <string name="password_text">Пароль</string>
@@ -9,6 +11,13 @@
     <string name="authorize_text">Авторизоваться</string>
     <string name="auth_error_text">Пароль иили эл.почта введены\nневерно</string>
     <string name="email_error_text">Введите эл.почту</string>
+    <string name="back_text">Назад</string>
+    <string name="restore_text">Восстановить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pass_link_sent_title_text">На вашу почту было выслано письмо с дальнейшей инструкцией</string>
+    <string name="go_by_link_for_conformation_text">Перейдите по ссылке в письме и следуйте дальнейшим инструкциям</string>
+    <string name="ok_text">Ок</string>
 
 
 </resources>

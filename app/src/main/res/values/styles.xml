@@ -16,6 +16,14 @@
         <item name="android:textColor">@color/gray_text_color</item>
     </style>
 
+    <style name="GrayText16" parent="GrayText">
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="GrayText14" parent="GrayText">
+        <item name="android:textSize">@dimen/_14sdp</item>
+    </style>
+
     <style name="EditTextStyle" parent="GrayText">
         <item name="android:textSize">@dimen/_16sdp</item>
     </style>

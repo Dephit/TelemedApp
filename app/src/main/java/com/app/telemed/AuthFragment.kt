@@ -14,12 +14,16 @@ import com.app.telemed.databinding.AuthFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AuthFragment : BaseFragment() {
+class AuthFragment : EmailFragment() {
 
     private val viewModel: AuthViewModel by navGraphViewModels(R.id.app_navigation) {
         defaultViewModelProviderFactory
     }
     lateinit var binding: AuthFragmentBinding
+
+    override fun setEmail(email: String?) {
+        binding.emailEditText.setText(email)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AuthFragmentBinding.inflate(inflater,  null, false)
@@ -37,11 +41,7 @@ class AuthFragment : BaseFragment() {
         binding.passwordEditText.setText(password)
     }
 
-    private fun setEmail(email: String?) {
-        binding.emailEditText.setText(email)
-    }
-
-    private fun getEmail() = binding.emailEditText.text.toString().trim()
+    override fun getEmail() = binding.emailEditText.text.toString().trim()
 
     private fun getPassword() = binding.passwordEditText.text.toString().trim()
 
@@ -62,7 +62,7 @@ class AuthFragment : BaseFragment() {
     }
 
     private fun manageLogged() {
-        val bundle = bundleOf("amount" to viewModel.getName())
+        val bundle = bundleOf(viewModel.EMAIL to getEmail())
         findNavController().navigate(R.id.toLessons, bundle)
     }
 
@@ -95,7 +95,7 @@ class AuthFragment : BaseFragment() {
             emailEditText.addTextChangedListener { checkFieldsEmptiness(isPassOrEmailEmpty()) }
 
             recoveryPasswordLink.setOnClickListener {
-                val bundle = bundleOf("amount" to viewModel.getName())
+                val bundle = bundleOf(viewModel.EMAIL to getEmail())
                 it.findNavController().navigate(R.id.action_authFragment_to_passwordRecoveryDest, bundle)
             }
             passwordToggle.setOnClickListener {
