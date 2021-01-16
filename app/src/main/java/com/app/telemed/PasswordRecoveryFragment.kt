@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.databinding.PasswordRecoveryFragmentBinding
 
-class PasswordRecoveryFragment : Fragment() {
+class PasswordRecoveryFragment : BaseFragment() {
 
     private val viewModel: PasswordRecoveryViewModel  by navGraphViewModels(R.id.app_navigation) {
         defaultViewModelProviderFactory
@@ -26,9 +26,24 @@ class PasswordRecoveryFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Toast.makeText(context,  arguments?.getString("amount"), Toast.LENGTH_LONG).show()
+    override fun observe() {
+
+    }
+
+    override fun restoreState(savedInstanceState: Bundle?) {
+
+    }
+
+    override fun setListeners() {
+
+    }
+
+    override fun manageLoading(b: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun manageError(bool: Boolean) {
+        TODO("Not yet implemented")
     }
 
 }
