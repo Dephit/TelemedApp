@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/lesson_menu"
+        android:icon="@drawable/lesson_drawable"
+        android:title="@string/lesson_menu_text" />
+    <item
+        android:id="@+id/schedule_menu"
+        android:icon="@drawable/schedule_drawable"
+        android:title="@string/schedule_menu_text" />
+    <item
+        android:id="@+id/profile_menu"
+        android:icon="@drawable/profile_drawable"
+        android:title="@string/profile_menu_text" />
+</menu>

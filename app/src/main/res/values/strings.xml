@@ -2,7 +2,7 @@
     <string name="app_name">TelemedApp</string>
     <string name="auth_title_text">Авторизация в приложении</string>
     <string name="password_recovery_text">Восстановление пароля</string>
-    <string name="we_will_sent_your_pass_text">Мы вышлим вам на почту ссылку для восстановления</string>
+    <string name="we_will_sent_your_pass_text">Мы вышлем вам на почту ссылку для восстановления</string>
     <string name="your_email">Ваша почта</string>
     <string name="email_text">Эл.почта</string>
     <string name="password_text">Пароль</string>
@@ -18,6 +18,8 @@
     <string name="pass_link_sent_title_text">На вашу почту было выслано письмо с дальнейшей инструкцией</string>
     <string name="go_by_link_for_conformation_text">Перейдите по ссылке в письме и следуйте дальнейшим инструкциям</string>
     <string name="ok_text">Ок</string>
-
+    <string name="lesson_menu_text">Занятие</string>
+    <string name="schedule_menu_text">Расписание</string>
+    <string name="profile_menu_text">Профиль</string>
 
 </resources>

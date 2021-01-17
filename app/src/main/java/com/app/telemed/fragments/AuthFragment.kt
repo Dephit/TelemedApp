@@ -1,4 +1,4 @@
-package com.app.telemed
+package com.app.telemed.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +10,16 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.app.telemed.*
 import com.app.telemed.databinding.AuthFragmentBinding
+import com.app.telemed.fragments.baseFragments.EmailFragment
+import com.app.telemed.viewModels.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AuthFragment : EmailFragment() {
 
-    private val viewModel: AuthViewModel by navGraphViewModels(R.id.app_navigation) {
+    override val viewModel: AuthViewModel by navGraphViewModels(R.id.app_navigation) {
         defaultViewModelProviderFactory
     }
     lateinit var binding: AuthFragmentBinding
@@ -45,27 +48,6 @@ class AuthFragment : EmailFragment() {
 
     private fun getPassword() = binding.passwordEditText.text.toString().trim()
 
-    override fun observe() {
-        viewModel.authState.observe(viewLifecycleOwner, {
-            if(it is AuthState.Loading)
-                manageLoading(true)
-            else
-                manageLoading(false)
-            if(it is AuthState.Error)
-                manageError(true)
-            else
-                manageError(false)
-            if(it is AuthState.Logged)
-                manageLogged()
-            log(it.toString())
-        })
-    }
-
-    private fun manageLogged() {
-        val bundle = bundleOf(viewModel.EMAIL to getEmail())
-        findNavController().navigate(R.id.toLessons, bundle)
-    }
-
     override fun manageLoading(b: Boolean) {
         with(binding){
             emailErrorText.isEnabled = !b
@@ -75,10 +57,16 @@ class AuthFragment : EmailFragment() {
         }
     }
 
+    override fun manageSuccess() {
+        val bundle = bundleOf(viewModel.EMAIL to getEmail())
+        findNavController().navigate(R.id.toLessons, bundle)
+    }
+
     override fun manageError(bool: Boolean) {
         with(binding){
             errorText.setVisible(bool)
-            emailErrorText.setVisible(bool)
+            passwordEditText.isActivated = bool
+            manageEmailFragment(emailEditText, emailErrorText)
         }
     }
 
@@ -90,6 +78,7 @@ class AuthFragment : EmailFragment() {
 
     override fun setListeners() {
         with(binding){
+            emailErrorText.setVisible(false)
             passwordToggle.isActivated = passwordEditText.togglePasswordVisibility(false)
             passwordEditText.addTextChangedListener { checkFieldsEmptiness(isPassOrEmailEmpty()) }
             emailEditText.addTextChangedListener { checkFieldsEmptiness(isPassOrEmailEmpty()) }
@@ -102,6 +91,7 @@ class AuthFragment : EmailFragment() {
                 passwordToggle.isActivated = passwordEditText.togglePasswordVisibility(!passwordToggle.isActivated)
             }
             authorizeButton.setOnClickListener {
+                hideKeyboard()
                 viewModel.authorize(getEmail(), getPassword())
             }
         }

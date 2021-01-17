@@ -1,4 +1,4 @@
-package com.app.telemed
+package com.app.telemed.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,18 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.app.telemed.viewModels.PasswordRecoveryViewModel
+import com.app.telemed.R
 import com.app.telemed.databinding.PasswordRecoveryFragmentBinding
+import com.app.telemed.enableProgress
+import com.app.telemed.fragments.baseFragments.EmailFragment
+import com.app.telemed.viewModels.baseViewModels.ModelState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PasswordRecoveryFragment : EmailFragment() {
 
-    private val viewModel: PasswordRecoveryViewModel  by navGraphViewModels(R.id.app_navigation) {
+    override val viewModel: PasswordRecoveryViewModel by navGraphViewModels(R.id.app_navigation) {
         defaultViewModelProviderFactory
     }
 
@@ -27,23 +32,8 @@ class PasswordRecoveryFragment : EmailFragment() {
         return binding.root
     }
 
-    override fun observe() {
-        viewModel.restoreState.observe(viewLifecycleOwner, {
-            if(it is PasswordRecoveryState.Loading)
-                manageLoading(true)
-            else
-                manageLoading(false)
-            if(it is PasswordRecoveryState.Error)
-                manageError(true)
-            else
-                manageError(false)
-            if(it is PasswordRecoveryState.PasswordSent)
-                manageSuccess()
-        })
-    }
-
-    private fun manageSuccess() {
-        viewModel.restoreState.value = PasswordRecoveryState.Normal
+    override fun manageSuccess() {
+        viewModel.getState().value = ModelState.Normal
         findNavController().navigate(R.id.action_passwordRecoveryDest_to_passwordLinkSentFragment)
     }
 
@@ -68,6 +58,7 @@ class PasswordRecoveryFragment : EmailFragment() {
             emailEditText.addTextChangedListener { checkFieldsEmptiness(getEmail().isEmpty()) }
 
             restoreButton.setOnClickListener {
+                hideKeyboard()
                 viewModel.restoreEmail(getEmail())
             }
         }
@@ -92,7 +83,7 @@ class PasswordRecoveryFragment : EmailFragment() {
 
     override fun manageError(bool: Boolean) {
         with(binding){
-            emailErrorText.setVisible(bool)
+            manageEmailFragment(emailEditText, emailErrorText)
         }
     }
 

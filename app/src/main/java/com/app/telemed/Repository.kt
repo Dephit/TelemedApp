@@ -1,12 +1,13 @@
 package com.app.telemed
 
+import com.app.telemed.interfaces.Api
+import com.app.telemed.interfaces.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RepositoryImpl(api: Api): Repository{
+class RepositoryImpl(api: Api): Repository {
     override fun getClient(): String {
         return "hello"
     }
@@ -27,8 +28,3 @@ class RepositoryImpl(api: Api): Repository{
 
 }
 
-interface Repository{
-    fun getClient():String
-    suspend fun logIn(email: String, pass: String): Flow<Int>
-    suspend fun restoreEmail(email: String): Flow<Int>
-}

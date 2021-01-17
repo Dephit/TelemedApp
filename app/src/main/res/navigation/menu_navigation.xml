@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_navigation.xml"
+    app:startDestination="@id/lessonScheduleFragment">
+
+    <fragment
+        android:id="@+id/lessonScheduleFragment"
+        android:name="com.app.telemed.fragments.ScheduleFragment"
+        android:label="schedule_fragment"
+        tools:layout="@layout/schedule_fragment"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.app.telemed.fragments.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/lessonFragment"
+        android:name="com.app.telemed.fragments.LessonFragment"
+        android:label="lesson_fragment"
+        tools:layout="@layout/lesson_fragment" />
+    <action
+        android:id="@+id/action_global_lessonFragment"
+        app:destination="@id/lessonFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/lessonFragment" />
+    <action
+        android:id="@+id/action_global_scheduleFragment"
+        app:destination="@id/lessonScheduleFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpToInclusive="false" />
+</navigation>

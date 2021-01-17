@@ -1,10 +1,10 @@
 package com.app.telemed
 
-import dagger.Binds
+import com.app.telemed.interfaces.Api
+import com.app.telemed.interfaces.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -42,7 +42,7 @@ class ApiModule {
 
     @Singleton
     @Provides
-    fun provideRepository(api: Api): Repository{
+    fun provideRepository(api: Api): Repository {
         return  RepositoryImpl(api)
     }
 

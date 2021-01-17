@@ -1,4 +1,4 @@
-package com.app.telemed
+package com.app.telemed.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
