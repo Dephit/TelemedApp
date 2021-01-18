@@ -11,6 +11,18 @@
         <item name="android:textColor">@color/black_text_color</item>
     </style>
 
+    <style name="BlackText16" parent="BlackText">
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="BlackText12" parent="BlackText">
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
+
+    <style name="BlackText10" parent="BlackText">
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
     <style name="GrayText">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/gray_text_color</item>
@@ -82,6 +94,11 @@
 
     <style name="WhiteTextPressed16" parent="WhiteTextPressed">
         <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="Widget.Theme.TelemedApp.MyView" parent="">
+        <item name="android:background">@color/gray_400</item>
+        <item name="exampleColor">@color/light_blue_400</item>
     </style>
 
 </resources>

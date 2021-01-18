@@ -17,7 +17,12 @@
     <color name="red_color_failure">#FF6A6A</color>
     <color name="black_text_color">#333333</color>
     <color name="gray_text_color">#999999</color>
+    <color name="calendar_view_color">#E4E5FF</color>
     <color name="black_15">#26000000</color>
     <color name="black_28">#47000000</color>
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
 
 </resources>

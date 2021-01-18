@@ -7,7 +7,7 @@ import com.app.telemed.interfaces.Repository
 import com.app.telemed.interfaces.BaseViewModelInterface
 
 sealed class ModelState {
-    object Success : ModelState()
+    class Success<T>(val obj: T? = null) : ModelState()
     class Error(msg: String? = null) : ModelState()
     object Loading : ModelState()
     object Normal : ModelState()

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.app.telemed.interfaces.BaseViewModelInterface
 import com.app.telemed.viewModels.baseViewModels.ModelState
@@ -31,9 +32,15 @@ abstract class BaseFragment: Fragment(), FragmentInterface {
                 manageError(true)
             else
                 manageError(false)
-            if(it is ModelState.Success)
-                manageSuccess()
+            if(it is ModelState.Success<*>){
+                manageSuccess(it.obj)
+            }
+            observeTo(it)
         })
+    }
+
+    override fun observeTo(modelState: ModelState) {
+
     }
 
     open fun hideKeyboard() {

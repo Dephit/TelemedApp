@@ -40,7 +40,7 @@ class ProfileFragment : BaseFragment() {
 
     }
 
-    override fun manageSuccess() {
+    override fun <T> manageSuccess(obj: T?) {
 
     }
 

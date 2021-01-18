@@ -50,7 +50,6 @@ class LessonScheduleFragment : BaseFragment() {
                     R.id.profile_menu -> fragment.findNavController().navigate(R.id.action_global_profileFragment)
                     R.id.schedule_menu -> fragment.findNavController().navigate(R.id.action_global_scheduleFragment)
                 }
-                //Toast.makeText(context, viewModel.str, Toast.LENGTH_SHORT).show()
                 true
             }
         }
@@ -60,7 +59,7 @@ class LessonScheduleFragment : BaseFragment() {
 
     }
 
-    override fun manageSuccess() {
+    override fun <T> manageSuccess(obj: T?) {
 
     }
 

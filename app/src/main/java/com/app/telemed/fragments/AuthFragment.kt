@@ -28,6 +28,11 @@ class AuthFragment : EmailFragment() {
         binding.emailEditText.setText(email)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        manageSuccess(null)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = AuthFragmentBinding.inflate(inflater,  null, false)
         return binding.root
@@ -57,7 +62,7 @@ class AuthFragment : EmailFragment() {
         }
     }
 
-    override fun manageSuccess() {
+    override fun <T> manageSuccess(obj: T?) {
         val bundle = bundleOf(viewModel.EMAIL to getEmail())
         findNavController().navigate(R.id.toLessons, bundle)
     }

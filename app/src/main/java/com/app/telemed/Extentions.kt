@@ -1,11 +1,14 @@
 package com.app.telemed
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
+import java.util.*
 
 fun View.setVisible(b: Boolean) {
     visibility = if(b){
@@ -13,6 +16,23 @@ fun View.setVisible(b: Boolean) {
     }else
         View.GONE
 }
+
+fun createBitmapFromLayout(tv: View): Bitmap? {
+    val spec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+    tv.measure(spec, spec)
+    tv.layout(0, 0, tv.measuredWidth, tv.measuredHeight)
+    val b = Bitmap.createBitmap(tv.measuredWidth, tv.measuredWidth,
+        Bitmap.Config.ARGB_8888)
+    val c = Canvas(b)
+    c.translate((-tv.scrollX).toFloat(), (-tv.scrollY).toFloat())
+    tv.draw(c)
+    return b
+}
+
+fun Calendar.setDay(i: Int) {
+    set(Calendar.DAY_OF_MONTH, i)
+}
+
 
 fun EditText.togglePasswordVisibility(bool: Boolean): Boolean {
     transformationMethod = if(bool){

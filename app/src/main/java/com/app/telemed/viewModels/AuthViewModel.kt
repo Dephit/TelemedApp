@@ -28,7 +28,7 @@ class AuthViewModel @ViewModelInject constructor(
             repository.logIn(email, pass)
                     .collect { value ->
                         if(value == 1){
-                            modelState.postValue(ModelState.Success)
+                            modelState.postValue(ModelState.Success(value))
                         }else {
                             modelState.postValue(ModelState.Error())
                         }

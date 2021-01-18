@@ -26,7 +26,7 @@ class PasswordRecoveryViewModel  @ViewModelInject constructor(
             repository.restoreEmail(email)
                     .collect { value ->
                         if(value == 1){
-                            modelState.postValue(ModelState.Success)
+                            modelState.postValue(ModelState.Success(value))
                         }else {
                             modelState.postValue(ModelState.Error())
                         }

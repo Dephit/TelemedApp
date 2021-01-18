@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.navGraphViewModels
-import com.app.telemed.viewModels.LessonViewModel
 import com.app.telemed.R
+import com.app.telemed.databinding.LessonFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
+import com.app.telemed.viewModels.LessonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,12 +18,14 @@ class LessonFragment : BaseFragment() {
         defaultViewModelProviderFactory
     }
 
+    lateinit var binding: LessonFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.lesson_fragment, container, false)
+        binding = LessonFragmentBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun observe() {
@@ -41,16 +44,12 @@ class LessonFragment : BaseFragment() {
 
     }
 
-    override fun manageSuccess() {
+    override fun <T> manageSuccess(obj: T?) {
 
     }
 
     override fun manageError(bool: Boolean) {
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
 }

@@ -32,7 +32,7 @@ class PasswordRecoveryFragment : EmailFragment() {
         return binding.root
     }
 
-    override fun manageSuccess() {
+    override fun <T> manageSuccess(obj: T?) {
         viewModel.getState().value = ModelState.Normal
         findNavController().navigate(R.id.action_passwordRecoveryDest_to_passwordLinkSentFragment)
     }
