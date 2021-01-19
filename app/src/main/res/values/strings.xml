@@ -9,7 +9,7 @@
     <string name="forgot_password_text">Забыли пароль?</string>
     <string name="your_password">Ваш пароль</string>
     <string name="authorize_text">Авторизоваться</string>
-    <string name="auth_error_text">Пароль иили эл.почта введены\nневерно</string>
+    <string name="auth_error_text">Пароль и/или эл.почта введены\nневерно</string>
     <string name="email_error_text">Введите эл.почту</string>
     <string name="back_text">Назад</string>
     <string name="restore_text">Восстановить</string>
