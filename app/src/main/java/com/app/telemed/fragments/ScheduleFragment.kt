@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -12,12 +13,12 @@ import com.app.telemed.databinding.ScheduleFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.viewModels.ScheduleViewModel
+import com.app.telemed.viewModels.baseViewModels.ModelState
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
 import java.time.YearMonth
 import java.time.temporal.WeekFields
 import java.util.*
@@ -53,9 +54,13 @@ class ScheduleFragment : BaseFragment() {
                 DayViewContainer(view)
 
             override fun bind(container: DayViewContainer, day: CalendarDay) =
-                container.bind(viewModel.list.find { it.date.get(Calendar.DAY_OF_MONTH) == day.day}, day, cMonth){lesson: Lesson->
-                    bundleOf( "lesson" to lesson)
-                    findNavController().navigate(R.id.schedule_to_day_schedule)
+                container.bind(viewModel.list.find { it.date.get(Calendar.DAY_OF_MONTH) == day.day}, day, cMonth) { lesson: Lesson->
+                    val bundle = bundleOf(
+                        "lesson" to lesson,
+                        "day" to day
+                    )
+                    //viewModel.toDay(bundle)
+                    findNavController().navigate(R.id.schedule_to_day_schedule, bundle)
                 }
         }
 
@@ -67,7 +72,6 @@ class ScheduleFragment : BaseFragment() {
 
             override fun create(view: View): MonthViewContainer  = MonthViewContainer(view)
         }
-
 
         val firstMonth = currentMonth.minusMonths(10)
         val lastMonth = currentMonth.plusMonths(10)
@@ -85,7 +89,10 @@ class ScheduleFragment : BaseFragment() {
     }
 
     override fun <T> manageSuccess(obj: T?) {
-        binding.calendarView.notifyCalendarChanged()
+        if(obj is Bundle){
+            findNavController().navigate(R.id.schedule_to_day_schedule, obj)
+        }else
+            binding.calendarView.notifyCalendarChanged()
     }
 
     override fun manageError(bool: Boolean) {

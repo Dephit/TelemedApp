@@ -1,5 +1,6 @@
 package com.app.telemed.viewModels
 
+import android.os.Bundle
 import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -32,5 +33,9 @@ class ScheduleViewModel @ViewModelInject constructor(
                     modelState.postValue(ModelState.Success(value))
                 }
         }
+    }
+
+    fun toDay(bundleOf: Bundle) {
+        modelState.postValue(ModelState.Success(bundleOf))
     }
 }

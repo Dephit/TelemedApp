@@ -2,6 +2,7 @@ package com.app.telemed.interfaces
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.app.telemed.databinding.DayViewBinding
 import java.util.*
 
 data class Lesson(

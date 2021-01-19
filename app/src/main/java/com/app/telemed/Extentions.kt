@@ -62,3 +62,30 @@ fun Button.enableProgress(b: Boolean, textId: Int) {
 fun CalendarDay.isCurrentDay(): Boolean {
     return date == LocalDate.now()
 }
+
+fun Int.get00time()= String.format("%02d", this)
+
+val MONTH_LIST = listOf(
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+)
+
+val DAY_WEEK_LIST = listOf(
+    "Пн",
+    "Вт",
+    "Ср",
+    "Чт",
+    "Пт",
+    "Сб",
+    "Вс"
+)

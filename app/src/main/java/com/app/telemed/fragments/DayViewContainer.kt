@@ -32,8 +32,6 @@ class DayViewContainer(view: View) : ViewContainer(view) {
 
     }
 
-
-
     private val textView = CalendarDayLayoutBinding.bind(view).calendarDayText
     private val lessonText = CalendarDayLayoutBinding.bind(view).lessonText
 }

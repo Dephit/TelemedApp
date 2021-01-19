@@ -21,6 +21,7 @@
         android:id="@+id/calendarDayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
         android:gravity="center"
         android:text="22"
         android:textAppearance="@style/BlackText12"
@@ -33,15 +34,13 @@
 
     <TextView
         android:id="@+id/lesson_text"
-        android:layout_width="@dimen/_50sdp"
+        android:layout_width="@dimen/_45sdp"
         android:layout_height="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_7sdp"
         android:background="@drawable/calendar_day_layout"
         android:ellipsize="end"
         android:lines="1"
         android:paddingStart="@dimen/_5sdp"
         android:paddingEnd="@dimen/_5sdp"
-        tools:text="22"
         android:textAlignment="center"
         android:textAppearance="@style/BlackText10"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +48,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarDayText"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        tools:text="22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

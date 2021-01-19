@@ -54,5 +54,19 @@
         android:id="@+id/dayScheduleFragment"
         android:name="com.app.telemed.DayScheduleFragment"
         android:label="day_schedule_fragment"
-        tools:layout="@layout/day_schedule_fragment" />
+        tools:layout="@layout/day_schedule_fragment" >
+        <action
+            android:id="@+id/action_dayScheduleFragment_to_lessonInfoFragment"
+            app:destination="@id/lessonInfoFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popUpTo="@id/dayScheduleFragment"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/lessonInfoFragment"
+        android:name="com.app.telemed.LessonInfoFragment"
+        android:label="lesson_info_fragment"
+        tools:layout="@layout/lesson_info_fragment" />
 </navigation>
