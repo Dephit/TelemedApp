@@ -6,26 +6,49 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import com.app.telemed.databinding.LessonInfoFragmentBinding
+import com.app.telemed.fragments.baseFragments.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class LessonInfoFragment : Fragment() {
+@AndroidEntryPoint
+class LessonInfoFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = LessonInfoFragment()
+    override val viewModel: LessonInfoViewModel by navGraphViewModels(R.id.menu_navigation_xml) {
+        defaultViewModelProviderFactory
     }
 
-    private lateinit var viewModel: LessonInfoViewModel
+    lateinit var binding: LessonInfoFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.lesson_info_fragment, container, false)
+        binding = LessonInfoFragmentBinding.inflate(inflater)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LessonInfoViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun restoreState(savedInstanceState: Bundle?) {
+
     }
+
+    override fun setListeners() {
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    override fun manageLoading(b: Boolean) {
+
+    }
+
+    override fun <T> manageSuccess(obj: T?) {
+    }
+
+    override fun manageError(bool: Boolean) {
+
+    }
+
 
 }
