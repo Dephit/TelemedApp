@@ -80,9 +80,7 @@ class DayScheduleFragment : BaseFragment() {
                 }
                 v.root.setOnClickListener {
                     findNavController().navigate(R.id.action_dayScheduleFragment_to_lessonInfoFragment,
-                    bundleOf(
-                        "lesson" to lesson
-                    )
+                    bundleOf(LESSONS to lesson)
                     )
                 }
 

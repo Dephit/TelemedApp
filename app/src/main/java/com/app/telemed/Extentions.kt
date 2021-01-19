@@ -89,3 +89,5 @@ val DAY_WEEK_LIST = listOf(
     "Сб",
     "Вс"
 )
+
+val LESSONS = "LESSONS"

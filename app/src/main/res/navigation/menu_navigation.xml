@@ -69,4 +69,17 @@
         android:name="com.app.telemed.LessonInfoFragment"
         android:label="lesson_info_fragment"
         tools:layout="@layout/lesson_info_fragment" />
+    <fragment
+        android:id="@+id/lessonInProgressFragment"
+        android:name="com.app.telemed.LessonInProgressFragment"
+        android:label="lesson_in_progress_fragment"
+        tools:layout="@layout/lesson_in_progress_fragment" />
+    <action
+        android:id="@+id/action_global_lessonInProgressFragment"
+        app:destination="@id/lessonInProgressFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/lessonFragment" />
 </navigation>

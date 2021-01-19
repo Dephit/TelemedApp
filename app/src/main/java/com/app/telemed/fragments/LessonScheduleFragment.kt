@@ -4,13 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.viewModels.LessonScheduleViewModel
 import com.app.telemed.R
 import com.app.telemed.databinding.LessonScheduleFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
+import com.app.telemed.setVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 
 @AndroidEntryPoint
 class LessonScheduleFragment : BaseFragment() {
@@ -42,6 +48,20 @@ class LessonScheduleFragment : BaseFragment() {
                 .getOrCreateBadge(R.id.profile_menu)
 
             badge.isVisible = true
+            CoroutineScope(IO).launch {
+                delay(200)
+                withContext(Main){
+                    fragment.findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
+                        if(destination.id == R.id.lessonInfoFragment
+                            || destination.id == R.id.lessonInProgressFragment
+                        ){
+                            bottomNavigation.setVisible(false)
+                        }else {
+                            bottomNavigation.setVisible(true)
+                        }
+                    }
+                }
+            }
             bottomNavigation.selectedItemId = R.id.schedule_menu
 
             bottomNavigation.setOnNavigationItemSelectedListener {
@@ -50,8 +70,10 @@ class LessonScheduleFragment : BaseFragment() {
                     R.id.profile_menu -> fragment.findNavController().navigate(R.id.action_global_profileFragment)
                     R.id.schedule_menu -> fragment.findNavController().navigate(R.id.action_global_scheduleFragment)
                 }
+
                 true
             }
+
         }
     }
 

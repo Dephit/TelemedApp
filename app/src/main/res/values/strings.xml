@@ -21,5 +21,17 @@
     <string name="lesson_menu_text">Занятие</string>
     <string name="schedule_menu_text">Расписание</string>
     <string name="profile_menu_text">Профиль</string>
+    <string name="to_beginning_of_lesson_text">К началу занятия</string>
+    <string name="doctor_text">Врач</string>
+    <string name="coach_text">Главный тренер</string>
+    <string name="instructor_text">Инструктор</string>
+    <string name="coach_2_text">Тренер</string>
+    <string name="your_pulse_text" >Ваш пульс</string>
+    <string name="minim">миним.</string>
+    <string name="mid">сред.</string>
+    <string name="max">макс.</string>
+    <string name="soon_will_start">Скоро начнётся</string>
+    <string name="finished">Закончилось</string>
+    <string name="make_appointment">Записаться на занятие</string>
 
 </resources>
