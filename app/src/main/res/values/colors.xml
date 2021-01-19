@@ -16,6 +16,7 @@
     <color name="green_color_succsess">#5FC885</color>
     <color name="red_color_failure">#FF6A6A</color>
     <color name="black_text_color">#333333</color>
+    <color name="black_text_color_pre">#000000</color>
     <color name="gray_text_color">#999999</color>
     <color name="calendar_view_color">#E4E5FF</color>
     <color name="black_15">#26000000</color>

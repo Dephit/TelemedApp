@@ -9,9 +9,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/week_header"
 
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_31sdp"
-        android:elevation="10dp"
+        android:layout_width="411dp"
+        android:layout_height="42dp"
+        android:background="@color/white"
+        android:elevation="@dimen/_1sdp"
+        android:translationZ="@dimen/_1sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_56sdp"
         android:elevation="10dp"
+        android:translationZ="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

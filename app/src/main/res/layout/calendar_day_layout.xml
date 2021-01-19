@@ -3,7 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/white_to_prime_text_toucheble"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/calendarDayText"
@@ -24,12 +36,12 @@
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_7sdp"
-        android:background=" #E4E5FF"
+        android:background="@drawable/calendar_day_layout"
         android:ellipsize="end"
         android:lines="1"
         android:paddingStart="@dimen/_5sdp"
         android:paddingEnd="@dimen/_5sdp"
-        android:text="TextView"
+        tools:text="22"
         android:textAlignment="center"
         android:textAppearance="@style/BlackText10"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,4 +50,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarDayText"
         app:layout_constraintVertical_bias="0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

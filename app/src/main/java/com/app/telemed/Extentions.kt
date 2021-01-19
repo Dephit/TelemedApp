@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
+import com.kizitonwose.calendarview.model.CalendarDay
+import java.time.LocalDate
 import java.util.*
 
 fun View.setVisible(b: Boolean) {
@@ -55,4 +57,8 @@ fun Button.enableProgress(b: Boolean, textId: Int) {
     }else {
         hideProgress(textId)
     }
+}
+
+fun CalendarDay.isCurrentDay(): Boolean {
+    return date == LocalDate.now()
 }
