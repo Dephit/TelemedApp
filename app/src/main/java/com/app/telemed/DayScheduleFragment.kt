@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.get
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -41,15 +43,16 @@ class DayScheduleFragment : BaseFragment() {
     }
 
     private fun setUpCalendar() {
-        val lesson = arguments?.getParcelable<Lesson>("lesson")
+        val lesson = arguments?.getParcelableArrayList<Lesson>(LESSONS)
         val day = arguments?.getSerializable("day") as CalendarDay
 
         val inf = LayoutInflater.from(context)
         binding.toolbar.title = "${DAY_WEEK_LIST[day.date.dayOfWeek.value - 1]}, ${day.date.dayOfMonth}-е ${MONTH_LIST[day.date.monthValue]}"
 
         for (i in 0..24){
-            attachToView(inf, lesson, i)
+            attachToView(inf, i)
         }
+        viewModel.addLesson(lesson)
     }
 
     override fun setListeners() {
@@ -61,7 +64,28 @@ class DayScheduleFragment : BaseFragment() {
     override fun manageLoading(b: Boolean) {
     }
 
+    @SuppressLint("SetTextI18n")
     override fun <T> manageSuccess(obj: T?) {
+        (obj as List<Lesson>).forEach {lesson->
+            binding.days[lesson.date.get(Calendar.HOUR)].let {
+                val v = DayViewBinding.bind(it)
+                v.event.visibility = View.VISIBLE
+                if (lesson.isPassed()){
+                    v.event.alpha = 0.5f
+                }
+                v.alarmIcon.setVisible(lesson.isSoon())
+                v.root.setOnClickListener {
+                    findNavController().navigate(R.id.action_dayScheduleFragment_to_lessonInfoFragment,
+                            bundleOf(LESSONS to lesson)
+                    )
+                }
+
+                v.event.isSelected = lesson.isSighned && !BuildConfig.IS_REHUB
+                v.eventTime.text = "${lesson.date.get(Calendar.HOUR).get00time()}:${lesson.date.get(Calendar.MINUTE).get00time()}"
+                v.evenDesc.text = lesson.desc
+                v.event.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun manageError(bool: Boolean) {
@@ -69,32 +93,15 @@ class DayScheduleFragment : BaseFragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun attachToView(inf: LayoutInflater, lesson: Lesson?, i: Int) {
+    fun attachToView(inf: LayoutInflater, i: Int) {
         val v = DayViewBinding.inflate(inf, null, false)
-        lesson?.apply {
-            if(date.get(Calendar.HOUR) == i){
-                v.event.visibility = View.VISIBLE
-                if(passed) {
-                    v.event.alpha = 0.5f
-                    v.alarmIcon.setVisible(false)
-                }
-                v.root.setOnClickListener {
-                    findNavController().navigate(R.id.action_dayScheduleFragment_to_lessonInfoFragment,
-                    bundleOf(LESSONS to lesson)
-                    )
-                }
-
-                v.eventTime.text = "${lesson.date.get(Calendar.HOUR).get00time()}:${lesson.date.get(Calendar.MINUTE).get00time()}"
-                v.evenDesc.text = desc
-            }else v.event.visibility = View.INVISIBLE
-        }
-
+        v.root.id = i
         v.currentHour.setVisible(LocalDateTime.now().hour == i)
         if(LocalDateTime.now().hour == i) {
             v.currentHour.y = (v.root.height * (LocalDateTime.now().minute / 60)).toFloat()
         }
         v.timeText.text = "${i.get00time()}:00"
-
+        v.event.visibility = View.INVISIBLE
         binding.days.addView(v.root)
     }
 }

@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.app.telemed.LESSONS
 import com.app.telemed.R
 import com.app.telemed.databinding.ScheduleFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.viewModels.ScheduleViewModel
-import com.app.telemed.viewModels.baseViewModels.ModelState
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.ui.DayBinder
@@ -56,10 +55,9 @@ class ScheduleFragment : BaseFragment() {
             override fun bind(container: DayViewContainer, day: CalendarDay) =
                 container.bind(viewModel.list.find { it.date.get(Calendar.DAY_OF_MONTH) == day.day}, day, cMonth) { lesson: Lesson->
                     val bundle = bundleOf(
-                        "lesson" to lesson,
+                        LESSONS to viewModel.list.filter { it.date.get(Calendar.DAY_OF_MONTH) == day.day },
                         "day" to day
                     )
-                    //viewModel.toDay(bundle)
                     findNavController().navigate(R.id.schedule_to_day_schedule, bundle)
                 }
         }

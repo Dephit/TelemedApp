@@ -7,12 +7,14 @@ import java.util.*
 
 data class Lesson(
     var date: Calendar = Calendar.getInstance(),
-    var passed: Boolean = false,
+    var passed: Int = 0,
+    var isSighned: Boolean = false,
     var title: String? = "",
     val desc: String? = "",
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         Calendar.getInstance().fromLong(parcel.readLong()),
+        parcel.readInt(),
         parcel.readByte() != 0.toByte(),
         parcel.readString(),
         parcel.readString()
@@ -21,7 +23,8 @@ data class Lesson(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(date.time.time)
-        parcel.writeByte(if (passed) 1 else 0)
+        parcel.writeInt(passed)
+        parcel.writeByte(if (isSighned) 1 else 0)
         parcel.writeString(title)
         parcel.writeString(desc)
     }
@@ -39,6 +42,12 @@ data class Lesson(
             return arrayOfNulls(size)
         }
     }
+
+    fun isSoon() = passed == 0
+
+    fun isPassed() = passed == 1
+
+    fun isNotSoon() = passed == 2
 }
 
 fun Calendar.fromLong(long: Long): Calendar {

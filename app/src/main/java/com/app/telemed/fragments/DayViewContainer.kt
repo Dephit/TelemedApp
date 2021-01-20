@@ -1,6 +1,8 @@
 package com.app.telemed.fragments
 
+import android.os.Build
 import android.view.View
+import com.app.telemed.BuildConfig
 import com.app.telemed.databinding.CalendarDayLayoutBinding
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.isCurrentDay
@@ -12,9 +14,11 @@ class DayViewContainer(view: View) : ViewContainer(view) {
     fun bind(lesson: Lesson?, day: CalendarDay, cMonth: Int, onDayPressed: (Lesson) -> Unit) {
         if(null != lesson) {
             lessonText.text = lesson.title
-            if(lesson.passed)
+            if(lesson.isPassed()) {
                 lessonText.alpha = 0.5f
+            }
             lessonText.setVisible(true)
+            lessonText.isSelected = lesson.isSighned && !BuildConfig.IS_REHUB
             /*if (Build.VERSION.SDK_I   NT >= Build.VERSION_CODES.M) {
                 textView.setTextColor(view.context!!.getColor(R.color.green_color_succsess))
             }else {

@@ -35,6 +35,10 @@ fun Calendar.setDay(i: Int) {
     set(Calendar.DAY_OF_MONTH, i)
 }
 
+fun Calendar.setHourOfDay(i: Int) {
+    set(Calendar.HOUR_OF_DAY, i)
+}
+
 
 fun EditText.togglePasswordVisibility(bool: Boolean): Boolean {
     transformationMethod = if(bool){

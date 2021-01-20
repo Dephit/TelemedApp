@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000"
+        motion:autoTransition="animateToEnd"
+        motion:layoutDuringTransition="honorRequest">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/auth_title_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/email_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_9sdp"
+            motion:layout_constraintBottom_toTopOf="@+id/email_edit_text"
+            motion:layout_constraintVertical_bias="1"
+            motion:layout_constraintTop_toBottomOf="@+id/auth_title_text"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintStart_toStartOf="@+id/email_edit_text"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/password_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_9sdp"
+            motion:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+            motion:layout_constraintVertical_bias="1"
+            motion:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintStart_toStartOf="@+id/password_edit_text"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/recovery_password_link"
+            motion:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_9sdp"
+            motion:layout_constraintBottom_toTopOf="@+id/password_edit_text"
+            motion:layout_constraintVertical_bias="1"
+            motion:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+            motion:layout_constraintHorizontal_bias="1"
+            motion:layout_constraintStart_toStartOf="@+id/password_edit_text"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/password_edit_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            android:layout_marginEnd="@dimen/_17sdp"
+            motion:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+            android:layout_marginStart="@dimen/_17sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_55sdp"
+            android:scaleX="0"
+            android:scaleY="0" />
+        <Constraint
+            android:id="@+id/email_edit_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            android:layout_marginEnd="@dimen/_17sdp"
+            motion:layout_constraintTop_toBottomOf="@+id/auth_title_text"
+            android:layout_marginStart="@dimen/_17sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_63sdp"
+            android:scaleX="0"
+            android:scaleY="0" />
+        <Constraint
+            android:id="@+id/password_toggle"
+            motion:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            motion:layout_constraintBottom_toBottomOf="@+id/password_edit_text"
+            android:layout_marginEnd="@dimen/_14sdp"
+            motion:layout_constraintHorizontal_bias="1"
+            motion:layout_constraintTop_toTopOf="@+id/password_edit_text"
+            motion:layout_constraintStart_toStartOf="@+id/password_edit_text"
+            android:alpha="0" />
+        <Constraint
+            android:id="@+id/authorize_button"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            android:layout_marginEnd="@dimen/_15sdp"
+            motion:layout_constraintTop_toBottomOf="@+id/password_edit_text"
+            android:layout_marginStart="@dimen/_15sdp"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:scaleX="0"
+            android:scaleY="0" />
+        <Constraint
+            android:id="@+id/divider"
+            motion:layout_constraintEnd_toEndOf="@+id/authorize_button"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintTop_toBottomOf="@+id/error_text"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="@+id/authorize_button"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:scaleX="0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/email_error_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_9sdp"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintTop_toBottomOf="@+id/email_edit_text"
+            motion:layout_constraintHorizontal_bias="0"
+            motion:layout_constraintStart_toStartOf="@+id/email_edit_text"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/error_text"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_9sdp"
+            motion:layout_constraintVertical_bias="0"
+            motion:layout_constraintTop_toBottomOf="@+id/authorize_button"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:visibility="gone" />
+    </ConstraintSet>
+</MotionScene>

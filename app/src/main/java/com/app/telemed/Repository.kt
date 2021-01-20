@@ -31,15 +31,17 @@ class RepositoryImpl(api: Api): Repository {
 
     override fun getEvents(): Flow<List<Lesson>> {
         return flow {
-            kotlinx.coroutines.delay(2000)
+            kotlinx.coroutines.delay(3000)
             val list = mutableListOf<Lesson>()
-            for (i in 0 .. 5){
+            for (i in 0 .. 15){
                 val lesson = Lesson()
                 val calendar: Calendar = Calendar.getInstance()
-                calendar.setDay(Random.nextInt(1, 20))
+                calendar.setDay(Random.nextInt(1, 25))
+                calendar.setHourOfDay(Random.nextInt(1, 24))
                 lesson.date = calendar
-                lesson.passed = Random.nextBoolean()
-                lesson.title = "Гр. 105"
+                lesson.passed = Random.nextInt(0, 3)
+                lesson.isSighned = Random.nextBoolean()
+                lesson.title = "Гр. ${if(lesson.isPassed()) "Закончилось" else if(lesson.isSoon()) "Скоро" else "Не скоро"}"
                 list.add(lesson)
             }
 
