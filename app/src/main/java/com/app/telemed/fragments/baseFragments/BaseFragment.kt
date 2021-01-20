@@ -39,7 +39,7 @@ abstract class BaseFragment: Fragment(), FragmentInterface {
         })
     }
 
-    override fun observeTo(modelState: ModelState) {
+    override fun observeTo(modelState: ModelState?) {
 
     }
 

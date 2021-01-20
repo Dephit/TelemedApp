@@ -1,5 +1,6 @@
 package com.app.telemed
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.text.method.PasswordTransformationMethod
@@ -39,6 +40,12 @@ fun Calendar.setHourOfDay(i: Int) {
     set(Calendar.HOUR_OF_DAY, i)
 }
 
+fun getColor(requireContext: Context, id: Int): Int {
+    return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        requireContext.getColor(id)
+    }else
+        requireContext.resources.getColor(id)
+}
 
 fun EditText.togglePasswordVisibility(bool: Boolean): Boolean {
     transformationMethod = if(bool){

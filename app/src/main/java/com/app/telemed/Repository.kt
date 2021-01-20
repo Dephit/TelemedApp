@@ -29,24 +29,40 @@ class RepositoryImpl(api: Api): Repository {
         }
     }
 
+    fun getFakeEvent(): Lesson = Lesson().apply {
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.setDay(Random.nextInt(1, 25))
+            calendar.setHourOfDay(Random.nextInt(1, 24))
+            date = calendar
+            passed = Random.nextInt(0, 3)
+            isSighned = Random.nextBoolean()
+            title = "Гр. ${if(isPassed()) "Закончилось" else if(isSoon()) "Скоро" else "Не скоро"}"
+        }
+
     override fun getEvents(): Flow<List<Lesson>> {
         return flow {
             kotlinx.coroutines.delay(3000)
-            val list = mutableListOf<Lesson>()
-            for (i in 0 .. 15){
-                val lesson = Lesson()
-                val calendar: Calendar = Calendar.getInstance()
-                calendar.setDay(Random.nextInt(1, 25))
-                calendar.setHourOfDay(Random.nextInt(1, 24))
-                lesson.date = calendar
-                lesson.passed = Random.nextInt(0, 3)
-                lesson.isSighned = Random.nextBoolean()
-                lesson.title = "Гр. ${if(lesson.isPassed()) "Закончилось" else if(lesson.isSoon()) "Скоро" else "Не скоро"}"
-                list.add(lesson)
-            }
-
-            emit(list)
+            emit(getFakeEvents())
         }
+    }
+
+    override fun getEvent(): Flow<Lesson?> {
+        return flow {
+            kotlinx.coroutines.delay(2000)
+            emit(
+                if(Random.nextBoolean())
+                    getFakeEvent()
+                else null
+            )
+        }
+    }
+
+    private fun getFakeEvents(): List<Lesson> {
+        val list = mutableListOf<Lesson>()
+        for (i in 0 .. 15){
+            list.add(getFakeEvent())
+        }
+        return list
     }
 
 }

@@ -33,5 +33,6 @@
     <string name="soon_will_start">Скоро начнётся</string>
     <string name="finished">Закончилось</string>
     <string name="make_appointment">Записаться на занятие</string>
+    <string name="no_next_lesson">Следующее занятие отсутствует</string>
 
 </resources>

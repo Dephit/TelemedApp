@@ -2,7 +2,9 @@ package com.app.telemed.interfaces
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.app.telemed.MONTH_LIST
 import com.app.telemed.databinding.DayViewBinding
+import com.app.telemed.get00time
 import java.util.*
 
 data class Lesson(
@@ -48,6 +50,9 @@ data class Lesson(
     fun isPassed() = passed == 1
 
     fun isNotSoon() = passed == 2
+    fun getTimeDetail(): String {
+        return "${date.get(Calendar.DAY_OF_MONTH)} ${MONTH_LIST[date.get(Calendar.MONTH)]} ${date.get(Calendar.HOUR).get00time()}:${date.get(Calendar.MINUTE).get00time()}"
+    }
 }
 
 fun Calendar.fromLong(long: Long): Calendar {

@@ -47,7 +47,7 @@ class DayScheduleFragment : BaseFragment() {
         val day = arguments?.getSerializable("day") as CalendarDay
 
         val inf = LayoutInflater.from(context)
-        binding.toolbar.title = "${DAY_WEEK_LIST[day.date.dayOfWeek.value - 1]}, ${day.date.dayOfMonth}-е ${MONTH_LIST[day.date.monthValue]}"
+        binding.toolbar.title = "${DAY_WEEK_LIST[day.date.dayOfWeek.value - 1]}, ${day.date.dayOfMonth}-е ${MONTH_LIST[day.date.monthValue - 1]}"
 
         for (i in 0..24){
             attachToView(inf, i)

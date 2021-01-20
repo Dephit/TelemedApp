@@ -11,6 +11,7 @@ import com.app.telemed.LESSONS
 import com.app.telemed.R
 import com.app.telemed.databinding.ScheduleFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
+import com.app.telemed.getColor
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.viewModels.ScheduleViewModel
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -80,10 +81,14 @@ class ScheduleFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-
+        binding.swiperefresh.setColorSchemeColors(getColor(requireContext(), R.color.primary_button_color))
+        binding.swiperefresh.setOnRefreshListener {
+            viewModel.getEvents()
+        }
     }
 
     override fun manageLoading(b: Boolean) {
+        binding.swiperefresh.isRefreshing = b
     }
 
     override fun <T> manageSuccess(obj: T?) {

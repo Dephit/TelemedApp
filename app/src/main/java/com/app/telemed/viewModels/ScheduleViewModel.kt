@@ -24,7 +24,7 @@ class ScheduleViewModel @ViewModelInject constructor(
 
     var list: List<Lesson> = listOf()
 
-    private fun getEvents() {
+    fun getEvents() {
         modelState.postValue(ModelState.Loading)
         viewModelScope.launch {
             repository.getEvents()
