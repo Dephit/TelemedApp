@@ -12,6 +12,7 @@
     <string name="auth_error_text">Пароль и/или эл.почта введены\nневерно</string>
     <string name="email_error_text">Введите эл.почту</string>
     <string name="back_text">Назад</string>
+    <string name="leave_text">Выйти</string>
     <string name="restore_text">Восстановить</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

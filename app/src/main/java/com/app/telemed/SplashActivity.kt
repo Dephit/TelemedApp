@@ -1,7 +1,9 @@
 package com.app.telemed
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.app.telemed.interfaces.Repository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

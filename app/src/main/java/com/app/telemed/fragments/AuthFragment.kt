@@ -49,6 +49,7 @@ class AuthFragment : EmailFragment() {
         binding.passwordEditText.setText(password)
     }
 
+
     override fun getEmail() = binding.emailEditText.text.toString().trim()
 
     private fun getPassword() = binding.passwordEditText.text.toString().trim()
