@@ -1,21 +1,18 @@
 package com.app.telemed.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.LessonBaseFragment
 import com.app.telemed.R
 import com.app.telemed.databinding.LessonFragmentBinding
-import com.app.telemed.fragments.baseFragments.BaseFragment
 import com.app.telemed.getColor
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.setVisible
 import com.app.telemed.viewModels.LessonViewModel
-import com.app.telemed.viewModels.baseViewModels.ModelState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,11 +37,9 @@ class LessonFragment : LessonBaseFragment() {
     }
 
     override fun setListeners() {
-        setBeginLessonButtoun(binding.toBeginningOfLessonButton)
+        setBeginLessonButton(binding.toBeginningOfLessonButton)
         binding.swiperefresh.setColorSchemeColors(getColor(requireContext(),R.color.primary_button_color))
-        binding.swiperefresh.setOnRefreshListener {
-            viewModel.getEvent()
-        }
+        binding.swiperefresh.setOnRefreshListener { viewModel.getEvent() }
     }
 
     override fun manageLoading(b: Boolean) {

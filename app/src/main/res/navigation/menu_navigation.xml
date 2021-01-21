@@ -73,7 +73,8 @@
         android:id="@+id/lessonInProgressFragment"
         android:name="com.app.telemed.LessonInProgressFragment"
         android:label="lesson_in_progress_fragment"
-        tools:layout="@layout/lesson_in_progress_fragment" />
+        tools:layout="@layout/lesson_in_progress_fragment" >
+    </fragment>
     <action
         android:id="@+id/action_global_lessonInProgressFragment"
         app:destination="@id/lessonInProgressFragment"
@@ -82,4 +83,17 @@
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
         app:popUpTo="@id/lessonFragment" />
+    <fragment
+        android:id="@+id/lessonQuesteningFragment"
+        android:name="com.app.telemed.LessonQuesteningFragment"
+        android:label="lesson_questening_fragment"
+        tools:layout="@layout/lesson_questening_fragment" />
+    <action
+        android:id="@+id/action_global_lessonQuesteningFragment"
+        app:destination="@id/lessonQuesteningFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popUpTo="@id/menu_navigation.xml"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_enter_anim" />
 </navigation>

@@ -1,17 +1,10 @@
 package com.app.telemed
 
-import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.app.telemed.databinding.CustomLayoutBinding
 import com.app.telemed.databinding.LessonInProgressFragmentBinding
-import com.app.telemed.interfaces.Lesson
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -88,9 +81,15 @@ class LessonInProgressActivity : AppCompatActivity() {
 
     private fun manageQuestionButton(b: Boolean) {
         if(b){
-            binding.askText.text = getString(R.string.question_to_instructor)
+            binding.askText.text = if(BuildConfig.IS_REHUB)
+                getString(R.string.question_to_instructor)
+            else
+                getString(R.string.question_to_coach)
         }else {
-            binding.askText.text = getString(R.string.question_from_instructor)
+            binding.askText.text = if(BuildConfig.IS_REHUB)
+                getString(R.string.question_from_instructor)
+            else
+                getString(R.string.question_from_coach)
         }
     }
 

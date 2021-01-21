@@ -23,18 +23,23 @@ abstract class LessonBaseFragment: BaseFragment(){
 
     abstract override val viewModel: ILessonViewModel
 
-    protected fun setSignLessonButtoun(toBeginningOfLessonButton: Button) {
+    protected fun setSignLessonButton(toBeginningOfLessonButton: Button) {
         toBeginningOfLessonButton.setOnClickListener {
             Toast.makeText(requireContext(), "Вы записались", Toast.LENGTH_SHORT).show()
         }
     }
 
-    protected fun setBeginLessonButtoun(toBeginningOfLessonButton: Button) {
+    protected fun setBeginLessonButton(toBeginningOfLessonButton: Button) {
         toBeginningOfLessonButton.setOnClickListener {
-            startActivity(
-                Intent(context, LessonInProgressActivity::class.java)
-                    .putExtra(LESSONS, viewModel.getLesson())
-            )
+            viewModel.getLesson()?.passed = 1
+            startActivity(Intent(context, LessonInProgressActivity::class.java).putExtra(LESSONS, viewModel.getLesson()))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(viewModel.getLesson()?.isPassed() == true){
+            findNavController().navigate(R.id.action_global_lessonQuesteningFragment)
         }
     }
 
@@ -49,12 +54,13 @@ abstract class LessonBaseFragment: BaseFragment(){
             lifecycleScope.launch {
                 viewModel.getTimer()
                     .collect {
-                        if(it == "") {
-                            timerText.setVisible(false)
-                        } else {
-                            if(!timerText.isVisible)
-                                timerText.setVisible(true)
-                            timerText.text = it
+                        when (it) {
+                            "" -> { timerText.setVisible(false) }
+                            else -> {
+                                if(!timerText.isVisible)
+                                    timerText.setVisible(true)
+                                timerText.text = it
+                            }
                         }
                     }
         }

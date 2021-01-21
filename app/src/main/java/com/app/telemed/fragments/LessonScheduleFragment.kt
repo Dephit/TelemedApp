@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.viewModels.LessonScheduleViewModel
 import com.app.telemed.R
@@ -48,12 +49,14 @@ class LessonScheduleFragment : BaseFragment() {
                 .getOrCreateBadge(R.id.profile_menu)
 
             badge.isVisible = true
-            CoroutineScope(IO).launch {
-                delay(200)
+            lifecycleScope.launch {
                 withContext(Main){
+                    delay(200)
+                    bottomNavigation.setVisible(false)
                     fragment.findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
                         if(destination.id == R.id.lessonInfoFragment
                             || destination.id == R.id.lessonInProgressFragment
+                            || destination.id == R.id.lessonQuesteningFragment
                         ){
                             bottomNavigation.setVisible(false)
                         }else {
@@ -63,16 +66,15 @@ class LessonScheduleFragment : BaseFragment() {
                 }
             }
             bottomNavigation.selectedItemId = R.id.schedule_menu
-
             bottomNavigation.setOnNavigationItemSelectedListener {
                 when(it.itemId){
                     R.id.lesson_menu -> fragment.findNavController().navigate(R.id.action_global_lessonFragment)
                     R.id.profile_menu -> fragment.findNavController().navigate(R.id.action_global_profileFragment)
                     R.id.schedule_menu -> fragment.findNavController().navigate(R.id.action_global_scheduleFragment)
                 }
-
                 true
             }
+
 
         }
     }

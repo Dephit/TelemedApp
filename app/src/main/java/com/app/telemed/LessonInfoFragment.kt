@@ -41,7 +41,7 @@ class LessonInfoFragment : LessonBaseFragment() {
             toolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
-            setBeginLessonButtoun(toBeginningOfLessonButton)
+            setBeginLessonButton(toBeginningOfLessonButton)
         }
     }
 
@@ -81,7 +81,7 @@ class LessonInfoFragment : LessonBaseFragment() {
 
             if(!BuildConfig.IS_REHUB){
                 toBeginningOfLessonButton.setText(R.string.make_appointment)
-                setSignLessonButtoun(toBeginningOfLessonButton)
+                setSignLessonButton(toBeginningOfLessonButton)
             }
             toBeginningOfLessonButton.setVisible(!BuildConfig.IS_REHUB)
         }
