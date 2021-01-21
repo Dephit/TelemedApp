@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="white_pressed">#6A6A6A</color>
+    <color name="white_pressed">#C5C5C5</color>
 
 
     <color name="selected_button_color">#219653</color>
@@ -27,5 +27,8 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
+    <color name="red_color_failure_pressed">#863737</color>
+    <color name="gray_text_color_pressed" >#F8F8F8</color>
+    <color name="green_color_succsess_pressed">#438D5D</color>
 
 </resources>

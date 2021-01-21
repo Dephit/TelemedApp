@@ -27,7 +27,7 @@
     <string name="coach_text">Главный тренер</string>
     <string name="instructor_text">Инструктор</string>
     <string name="coach_2_text">Тренер</string>
-    <string name="your_pulse_text" >Ваш пульс</string>
+    <string name="your_pulse_text">Ваш пульс</string>
     <string name="minim">миним.</string>
     <string name="mid">сред.</string>
     <string name="max">макс.</string>
@@ -35,5 +35,16 @@
     <string name="finished">Закончилось</string>
     <string name="make_appointment">Записаться на занятие</string>
     <string name="no_next_lesson">Следующее занятие отсутствует</string>
+    <string name="dont_show_yourself">Не показывать себя</string>
+    <string name="show_yourself">Включить видео</string>
+    <string name="question_to_instructor">Вопрос инструктору</string>
+    <string name="question_to_coach">Вопрос тренеру</string>
+    <string name="question_from_instructor">Вы ждете ответ от инструктора</string>
+    <string name="question_from_coach">Вы ждете ответ от тренера</string>
+    <string name="conversation_with_coach">Проходит общение с тренером</string>
+    <string name="conversation_with_instructor">Проходит общение с инструктором</string>
+    <string name="are_you_sure_you_wanna_leave">Вы действительно хотите выйти из занятия?</string>
+    <string name="cancel_text" >Отмена</string>
+    <string name="yes_leave_text" >Да, выйти</string>
 
 </resources>

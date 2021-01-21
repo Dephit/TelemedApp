@@ -1,10 +1,12 @@
 package com.app.telemed
 
+import android.content.Intent
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -29,7 +31,10 @@ abstract class LessonBaseFragment: BaseFragment(){
 
     protected fun setBeginLessonButtoun(toBeginningOfLessonButton: Button) {
         toBeginningOfLessonButton.setOnClickListener {
-            findNavController().navigate(R.id.action_global_lessonInProgressFragment)
+            startActivity(
+                Intent(context, LessonInProgressActivity::class.java)
+                    .putExtra(LESSONS, viewModel.getLesson())
+            )
         }
     }
 

@@ -4,9 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.text.method.PasswordTransformationMethod
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import com.app.telemed.databinding.CustomLayoutBinding
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -74,6 +77,26 @@ fun CalendarDay.isCurrentDay(): Boolean {
     return date == LocalDate.now()
 }
 
+fun showAlertDialogButtonClicked(view: View, listener: ()-> Unit, onCancel: ()-> Unit) {
+    // create an alert builder
+    val builder = AlertDialog.Builder(view.context)
+    // set the custom layout
+    val customLayout = CustomLayoutBinding.inflate(LayoutInflater.from(view.context))
+    builder.setView(customLayout.root)
+    // add a button
+    builder.setOnDismissListener { onCancel() }
+
+    customLayout.leaveButton.setOnClickListener {
+        listener()
+    }
+    // create and show the alert dialog
+    val dialog = builder.create()
+    dialog.show()
+    customLayout.cancel.setOnClickListener {
+        dialog.dismiss()
+    }
+}
+
 fun Int.get00time()= String.format("%02d", this)
 
 val MONTH_LIST = listOf(
@@ -102,3 +125,4 @@ val DAY_WEEK_LIST = listOf(
 )
 
 val LESSONS = "LESSONS"
+

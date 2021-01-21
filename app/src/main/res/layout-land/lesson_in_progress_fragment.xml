@@ -120,7 +120,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/show_video_button"
-        android:layout_width="@dimen/_118sdp"
+        android:layout_width="@dimen/_171sdp"
         android:layout_height="@dimen/_56sdp"
         android:layout_marginTop="@dimen/_11sdp"
         android:background="@color/white_text_toucheble"

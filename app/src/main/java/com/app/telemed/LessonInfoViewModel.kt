@@ -14,12 +14,12 @@ import kotlinx.coroutines.flow.flow
 import java.util.*
 
 class LessonInfoViewModel @ViewModelInject constructor(
-    private val repository: Repository,
+    override val repository: Repository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : LessonBaseViewModel(repository, savedStateHandle){
 
     fun setLesson(lesson: Lesson?) {
-        modelState.postValue(ModelState.Success(lesson))
+        postLesson(lesson)
     }
 
 }

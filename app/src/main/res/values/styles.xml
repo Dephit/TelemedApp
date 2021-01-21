@@ -73,6 +73,25 @@
         <item name="android:textSize">@dimen/_12sdp</item>
     </style>
 
+    <style name="CameraButtonStyle" parent="ButtonStyle">
+        <item name="backgroundTint">@color/white_text_toucheble</item>
+        <item name="android:textColor">@color/red_color_failure</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="CameraTextStyle" parent="BlackText10">
+        <item name="android:textColor">@color/camera_text_touchable</item>
+    </style>
+
+    <style name="QuestionTextStyle" parent="BlackText12">
+        <item name="android:textColor">@color/ask_text_touchable</item>
+    </style>
+
+    <style name="LeaveTextStyle" parent="ButtonStyle">
+        <item name="android:textColor">@color/ask_text_touchable</item>
+        <item name="backgroundTint">@color/red_touchable</item>
+    </style>
+
     <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button">
         <item name="android:backgroundTint">@color/primary_button_text_color</item>
         <item name="android:height">@dimen/_44sdp</item>
