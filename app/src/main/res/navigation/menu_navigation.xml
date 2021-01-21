@@ -34,14 +34,28 @@
         app:destination="@id/lessonFragment"
         app:enterAnim="@anim/fragment_close_enter"
         app:exitAnim="@anim/fragment_close_exit"
-        app:popUpTo="@id/lessonFragment" />
+        app:popUpTo="@id/lessonFragment"
+        />
     <action
         android:id="@+id/action_global_scheduleFragment"
         app:destination="@id/lessonScheduleFragment"
         app:enterAnim="@anim/fragment_close_enter"
         app:exitAnim="@anim/fragment_close_exit"
+        app:launchSingleTop="false"
         app:popEnterAnim="@anim/fragment_close_enter"
-        app:popExitAnim="@anim/fragment_close_exit" />
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/lessonScheduleFragment" />
+
+    <action
+        android:id="@+id/action_global_scheduleFragment_navigation"
+        app:destination="@id/lessonScheduleFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:launchSingleTop="false"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/menu_navigation.xml"
+        app:popUpToInclusive="true"/>
     <action
         android:id="@+id/action_global_profileFragment"
         app:destination="@id/profileFragment"
@@ -49,7 +63,7 @@
         app:exitAnim="@anim/fragment_close_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
-        app:popUpToInclusive="false" />
+        app:popUpTo="@id/profileFragment" />
     <fragment
         android:id="@+id/dayScheduleFragment"
         android:name="com.app.telemed.DayScheduleFragment"
@@ -85,9 +99,14 @@
         app:popUpTo="@id/lessonFragment" />
     <fragment
         android:id="@+id/lessonQuesteningFragment"
-        android:name="com.app.telemed.LessonQuesteningFragment"
+        android:name="com.app.telemed.LessonQuestioningFragment"
         android:label="lesson_questening_fragment"
-        tools:layout="@layout/lesson_questening_fragment" />
+        tools:layout="@layout/lesson_questening_fragment" >
+        <action
+            android:id="@+id/action_lessonQuesteningFragment_to_firstQuestionFragment"
+            app:destination="@id/firstQuestionFragment"
+            app:popUpTo="@id/lessonQuesteningFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_lessonQuesteningFragment"
         app:destination="@id/lessonQuesteningFragment"
@@ -96,4 +115,36 @@
         app:popUpTo="@id/menu_navigation.xml"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_enter_anim" />
+    <fragment
+        android:id="@+id/firstQuestionFragment"
+        android:name="com.app.telemed.FirstQuestionFragment"
+        android:label="first_question_fragment"
+        tools:layout="@layout/first_question_fragment" />
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.app.telemed.SecondFragment"
+        android:label="second_fragment"
+        tools:layout="@layout/second_fragment" />
+    <fragment
+        android:id="@+id/thirdQuestionFragment"
+        android:name="com.app.telemed.ThirdQuestionFragment"
+        android:label="third_question_fragment"
+        tools:layout="@layout/third_question_fragment" />
+    <fragment
+        android:id="@+id/endOfQuestioningFragment"
+        android:name="com.app.telemed.EndOfQuestioningFragment"
+        android:label="end_of_questioning_fragment"
+        tools:layout="@layout/end_of_questioning_fragment" />
+    <action
+        android:id="@+id/action_global_firstQuestionFragment"
+        app:destination="@id/firstQuestionFragment" />
+    <action
+        android:id="@+id/action_global_secondFragment"
+        app:destination="@id/secondFragment" />
+    <action
+        android:id="@+id/action_global_thirdQuestionFragment"
+        app:destination="@id/thirdQuestionFragment" />
+    <action
+        android:id="@+id/action_global_endOfQuestioningFragment"
+        app:destination="@id/endOfQuestioningFragment" />
 </navigation>

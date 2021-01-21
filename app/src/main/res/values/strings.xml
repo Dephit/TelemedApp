@@ -46,5 +46,12 @@
     <string name="are_you_sure_you_wanna_leave">Вы действительно хотите выйти из занятия?</string>
     <string name="cancel_text" >Отмена</string>
     <string name="yes_leave_text" >Да, выйти</string>
+    <string name="question_title_text">Занятие завершено</string>
+    <string name="question_subtitle_text">Пожалуйста ответьте на несколько вопросов о вашем самочувствии</string>
+    <string name="to_questions">Перейти к вопросам</string>
+    <string name="question_number">Вопрос</string>
+    <string name="thanks_for_answering">Спасибо что ответили на вопросы</string>
+    <string name="doctor_and_instructor_will_read">Доктор и инструктор учтут ваши ответы в разработке программы следующих занятий</string>
+    <string name="good">Хорошо</string>
 
 </resources>

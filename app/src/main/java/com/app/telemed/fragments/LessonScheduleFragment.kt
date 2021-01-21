@@ -52,11 +52,14 @@ class LessonScheduleFragment : BaseFragment() {
             lifecycleScope.launch {
                 withContext(Main){
                     delay(200)
-                    bottomNavigation.setVisible(false)
                     fragment.findNavController().addOnDestinationChangedListener { controller, destination, arguments ->
                         if(destination.id == R.id.lessonInfoFragment
                             || destination.id == R.id.lessonInProgressFragment
                             || destination.id == R.id.lessonQuesteningFragment
+                                || destination.id == R.id.firstQuestionFragment
+                                || destination.id == R.id.secondFragment
+                                || destination.id == R.id.thirdQuestionFragment
+                                || destination.id == R.id.endOfQuestioningFragment
                         ){
                             bottomNavigation.setVisible(false)
                         }else {
@@ -74,8 +77,6 @@ class LessonScheduleFragment : BaseFragment() {
                 }
                 true
             }
-
-
         }
     }
 

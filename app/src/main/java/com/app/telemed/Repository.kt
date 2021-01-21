@@ -57,6 +57,44 @@ class RepositoryImpl(api: Api): Repository {
         }
     }
 
+    override fun getQuestions(): Flow<List<Question>?> {
+        return flow {
+            val question = mutableListOf<Question>()
+            question.add(Question(
+                question = "Насколько силен болевой синдром?\n" +
+                        "по шкале от 1го до 10ти",
+                type = QuestionType.Mark
+                ))
+            if(BuildConfig.IS_REHUB){
+                question.add(
+                    Question(
+                        type = QuestionType.Select,
+                        variants = listOf(
+                            "Вариант №1",
+                            "Вариант №2",
+                            "Вариант №3",
+                            "Вариант №4"
+                        )
+                    ))
+            }else {
+                for (i in 0 .. 5){
+                    question.add(
+                        Question(
+                            type = QuestionType.Select,
+                            variants = listOf(
+                                "Вариант №1",
+                                "Вариант №2",
+                                "Вариант №3",
+                                "Вариант №4"
+                            )
+                        ))
+                }
+            }
+            question.add(Question(type = QuestionType.Comment))
+            emit(question)
+        }
+    }
+
     private fun getFakeEvents(): List<Lesson> {
         val list = mutableListOf<Lesson>()
         for (i in 0 .. 15){

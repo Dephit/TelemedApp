@@ -1,6 +1,7 @@
 package com.app.telemed
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -91,6 +92,10 @@ class LessonInProgressActivity : AppCompatActivity() {
             else
                 getString(R.string.question_from_coach)
         }
+    }
+
+    override fun onBackPressed() {
+        showDialog()
     }
 
     private fun makeHeartBeat() {

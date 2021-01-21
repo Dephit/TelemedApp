@@ -94,6 +94,7 @@ fun showAlertDialogButtonClicked(view: View, listener: ()-> Unit, onCancel: ()->
     dialog.show()
     customLayout.cancel.setOnClickListener {
         dialog.dismiss()
+        dialog.cancel()
     }
 }
 

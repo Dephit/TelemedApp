@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -17,6 +18,8 @@ import com.app.telemed.fragments.baseFragments.BaseFragment
 import com.app.telemed.interfaces.Lesson
 import com.kizitonwose.calendarview.model.CalendarDay
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.util.*
 
@@ -98,7 +101,10 @@ class DayScheduleFragment : BaseFragment() {
         v.root.id = i
         v.currentHour.setVisible(LocalDateTime.now().hour == i)
         if(LocalDateTime.now().hour == i) {
-            v.currentHour.y = (v.root.height * (LocalDateTime.now().minute / 60)).toFloat()
+            lifecycleScope.launch {
+                delay(200)
+                v.currentHour.y = ((v.root.height).toFloat() * (LocalDateTime.now().minute.toFloat() / 60f))
+            }
         }
         v.timeText.text = "${i.get00time()}:00"
         v.event.visibility = View.INVISIBLE
