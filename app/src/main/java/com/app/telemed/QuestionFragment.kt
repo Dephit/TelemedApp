@@ -1,5 +1,6 @@
 package com.app.telemed
 
+import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -9,8 +10,23 @@ abstract class QuestionFragment : BaseFragment() {
 
     abstract override val viewModel: IQuestionBaseViewModel
 
-    protected fun getTitle(): CharSequence? {
+    protected fun getTitle(): CharSequence {
         return "${getString(R.string.question_number)} №${viewModel.getCurrentPosition() + 1}"
+    }
+
+    override fun restoreState(savedInstanceState: Bundle?) {
+        arguments?.let {
+            viewModel.restoreState(it)
+            viewModel.getCurrentQuestion().apply {
+                onStateRestored(this)
+            }
+        }
+    }
+
+    abstract fun onStateRestored(question: Question)
+
+    protected fun getNumText(): CharSequence {
+        return "${getString(R.string.question_number)} ${viewModel.getCurrentPosition() + 1} ${getString(R.string.from_text)} ${viewModel.getQuests().size - 1}"
     }
 
     protected fun navigateToQuestion() {
@@ -22,7 +38,7 @@ abstract class QuestionFragment : BaseFragment() {
             findNavController().navigate(R.id.action_global_endOfQuestioningFragment, bundle)
             return
         }
-        when(viewModel.getQuests()[viewModel.getCurrentPosition()].type){
+        when(viewModel.getCurrentQuestion().type){
             QuestionType.Mark -> findNavController().navigate(R.id.action_global_firstQuestionFragment, bundle)
             QuestionType.Select -> findNavController().navigate(R.id.action_global_secondFragment, bundle)
             QuestionType.Comment -> findNavController().navigate(R.id.action_global_thirdQuestionFragment, bundle)

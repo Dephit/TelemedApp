@@ -1,13 +1,14 @@
 package com.app.telemed
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import androidx.core.view.forEach
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.app.telemed.databinding.FirstQuestionFragmentBinding
+import com.app.telemed.databinding.CheckBoxBinding
 import com.app.telemed.databinding.SecondFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,16 @@ class SecondFragment : QuestionFragment() {
         defaultViewModelProviderFactory
     }
 
+    override fun onStateRestored(question: Question) {
+        bindings.questionTitle.text = getTitle()
+        bindings.questionSubtitle.text = getString(R.string.chose_one_of_variants)
+        bindings.questionNum.text = getNumText()
+        val li = LayoutInflater.from(context)
+        question.variants?.forEach { variant ->
+            addVariant(li, variant)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return SecondFragmentBinding.inflate(inflater).run {
@@ -28,20 +39,31 @@ class SecondFragment : QuestionFragment() {
         }
     }
 
-    override fun restoreState(savedInstanceState: Bundle?) {
-        arguments?.let {
-            viewModel.restoreState(it)
-            viewModel.quest[viewModel.position].apply {
-                bindings.questionTitle.text = getTitle()
-                bindings.questionSubtitle.text = type.javaClass.name
+    private fun addVariant(li: LayoutInflater, string: String) {
+        val variantView = CheckBoxBinding.inflate(li)
+        variantView.checkBox2.text = string
+        variantView.checkBox2.setOnClickListener {
+            bindings.variants.forEach { vv->
+                CheckBoxBinding.bind(vv).checkBox2.isChecked = false
             }
+            (it as CheckBox).isChecked = true
+            bindings.toQuestions.isEnabled = true
+            viewModel.getCurrentQuestion().comment = string
         }
+        bindings.variants.addView(variantView.root)
     }
 
     override fun setListeners() {
-        bindings.toQuestions.setOnClickListener {
-            viewModel.position ++
-            navigateToQuestion()
+        with(bindings){
+            toQuestions.isEnabled = false
+            toQuestions.setOnClickListener {
+                viewModel.position ++
+                navigateToQuestion()
+            }
+
+            toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

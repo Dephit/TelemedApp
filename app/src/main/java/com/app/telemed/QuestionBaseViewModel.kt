@@ -23,7 +23,9 @@ open class QuestionBaseViewModel(repository: Repository, savedStateHandle: Saved
         return position
     }
 
-    fun restoreState(it: Bundle) {
+    override fun getCurrentQuestion() = quest[position]
+
+    override fun restoreState(it: Bundle) {
         position = it.getInt(CURRENT_QUESTION, 0)
         quest = it.getParcelableArrayList(QUESTIONS)!!
     }
@@ -34,6 +36,8 @@ interface IQuestionBaseViewModel : BaseViewModelInterface {
     val CURRENT_QUESTION: String
     val QUESTIONS: String
 
+    fun restoreState(it: Bundle)
     fun getQuests(): List<Question>
     fun getCurrentPosition(): Int
+    fun getCurrentQuestion(): Question
 }

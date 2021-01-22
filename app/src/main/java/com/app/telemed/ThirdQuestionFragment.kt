@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.databinding.SecondFragmentBinding
 import com.app.telemed.databinding.ThirdQuestionFragmentBinding
@@ -16,9 +18,14 @@ class ThirdQuestionFragment : QuestionFragment() {
 
     lateinit var bindings : ThirdQuestionFragmentBinding
 
-
     override val viewModel: ThirdQuestionViewModel by navGraphViewModels(R.id.menu_navigation_xml) {
         defaultViewModelProviderFactory
+    }
+
+    override fun onStateRestored(question: Question) {
+        bindings.questionTitle.text = getString(R.string.leave_your_comment)
+        bindings.questionSubtitle.text = getString(R.string.comment)
+        bindings.questionNum2.text = getString(R.string.comment)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -29,22 +36,23 @@ class ThirdQuestionFragment : QuestionFragment() {
         }
     }
 
-    override fun restoreState(savedInstanceState: Bundle?) {
-        arguments?.let {
-            viewModel.restoreState(it)
-            viewModel.quest[viewModel.position].apply {
-                bindings.questionTitle.text = getTitle()
-                bindings.questionSubtitle.text = type.javaClass.name
-            }
-        }
-    }
-
-
-
     override fun setListeners() {
-        bindings.toQuestions.setOnClickListener {
-            viewModel.position ++
-            navigateToQuestion()
+        with(bindings){
+            toQuestions.setOnClickListener {
+                hideKeyboard()
+                viewModel.position ++
+                navigateToQuestion()
+            }
+
+            toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            toQuestions.isEnabled = false
+            commentEditText.addTextChangedListener {
+                viewModel.getCurrentQuestion().comment = it.toString()
+                toQuestions.isEnabled = true
+            }
         }
     }
 

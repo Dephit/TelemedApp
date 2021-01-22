@@ -53,5 +53,12 @@
     <string name="thanks_for_answering">Спасибо что ответили на вопросы</string>
     <string name="doctor_and_instructor_will_read">Доктор и инструктор учтут ваши ответы в разработке программы следующих занятий</string>
     <string name="good">Хорошо</string>
+    <string name="to_next_question">Далее</string>
+    <string name="mark_text">Оценка</string>
+    <string name="from_text">из</string>
+    <string name="chose_one_of_variants">Выберите один из предложенных вариантов ниже</string>
+    <string name="comment">Комментарий</string>
+    <string name="leave_your_comment">Оставьте ваш комментарий</string>
+    <string name="write_here">Напишите тут...</string>
 
 </resources>

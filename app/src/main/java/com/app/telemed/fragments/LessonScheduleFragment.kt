@@ -65,6 +65,12 @@ class LessonScheduleFragment : BaseFragment() {
                         }else {
                             bottomNavigation.setVisible(true)
                         }
+
+                        when (arguments?.getString("back")) {
+                            "lesson" -> bottomNavigation.selectedItemId = R.id.lesson_menu
+                            "schedule" -> bottomNavigation.selectedItemId = R.id.schedule_menu
+                            "profile" -> bottomNavigation.selectedItemId = R.id.profile_menu
+                        }
                     }
                 }
             }

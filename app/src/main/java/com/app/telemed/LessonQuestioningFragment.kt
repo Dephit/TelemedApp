@@ -30,6 +30,10 @@ class LessonQuestioningFragment : QuestionFragment() {
 
     }
 
+    override fun onStateRestored(question: Question) {
+
+    }
+
     override fun setListeners() {
         binding.toQuestions.setOnClickListener {
             navigateToQuestion()
