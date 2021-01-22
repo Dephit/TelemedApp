@@ -26,15 +26,15 @@
             app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@id/authFragment" >
         </action>
-        <action
-            android:id="@+id/toLessons"
-            app:destination="@id/lessonScheduleFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
+    <action
+        android:id="@+id/toLessons"
+        app:destination="@id/lessonScheduleFragment"
+        app:enterAnim="@anim/fragment_close_enter"
+        app:exitAnim="@anim/fragment_close_exit"
+        app:launchSingleTop="true"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
     <fragment
         android:id="@+id/passwordRecoveryDest"
         android:name="com.app.telemed.fragments.PasswordRecoveryFragment"

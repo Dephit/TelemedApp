@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.viewModels.LessonScheduleViewModel
 import com.app.telemed.R
@@ -70,10 +71,15 @@ class LessonScheduleFragment : BaseFragment() {
                             "lesson" -> bottomNavigation.selectedItemId = R.id.lesson_menu
                             "schedule" -> bottomNavigation.selectedItemId = R.id.schedule_menu
                             "profile" -> bottomNavigation.selectedItemId = R.id.profile_menu
+                            "auth"-> {
+                                findNavController().popBackStack(R.id.authFragment, true)
+                                findNavController().navigate(R.id.authFragment)
+                            }
                         }
                     }
                 }
             }
+
             bottomNavigation.selectedItemId = R.id.schedule_menu
             bottomNavigation.setOnNavigationItemSelectedListener {
                 when(it.itemId){

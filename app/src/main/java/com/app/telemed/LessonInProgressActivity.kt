@@ -3,6 +3,7 @@ package com.app.telemed
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.app.telemed.databinding.LessonInProgressFragmentBinding
@@ -12,6 +13,7 @@ import kotlin.random.Random
 
 class LessonInProgressActivity : AppCompatActivity() {
 
+    private lateinit var dialog: AlertDialog
     private val IS_DIALOG_SHOWING: String = "IS_DIALOG_SHOWING"
     private val SHOW_VIDEO: String = "SHOW_VIDEO"
     private val ASK_QUESTION: String = "ASK_QUESTION"
@@ -25,6 +27,18 @@ class LessonInProgressActivity : AppCompatActivity() {
         setContentView(binding.root)
         setListeners()
         restoreState(savedInstanceState)
+    }
+
+    override fun onPause() {
+        if(this::dialog.isInitialized)
+            dialog.dismiss()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        if(this::dialog.isInitialized)
+            dialog.dismiss()
+        super.onDestroy()
     }
 
     private fun restoreState(savedInstanceState: Bundle?) {
@@ -57,11 +71,15 @@ class LessonInProgressActivity : AppCompatActivity() {
     }
 
     private fun showDialog() {
-        showAlertDialogButtonClicked(binding.root, {
-                finish()
-            }, {
-                isDialogShownig = false
-            })
+        if(!this::dialog.isInitialized) {
+            dialog =
+                showAlertDialogButtonClicked(binding.root, R.string.are_you_sure_you_wanna_leave, {
+                    finish()
+                }, {
+                    isDialogShownig = false
+                })
+        }else
+            dialog.show()
         isDialogShownig = true
     }
 

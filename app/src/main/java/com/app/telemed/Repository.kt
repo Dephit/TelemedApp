@@ -3,6 +3,7 @@ package com.app.telemed
 import com.app.telemed.interfaces.Api
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.interfaces.Repository
+import com.app.telemed.viewModels.Comment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.util.*
@@ -93,6 +94,31 @@ class RepositoryImpl(api: Api): Repository {
             question.add(Question(type = QuestionType.Comment))
             emit(question)
         }
+    }
+
+    override fun getComments(): Flow<List<Comment>?> {
+        return flow {
+
+            kotlinx.coroutines.delay(2000)
+            emit(getFakeComments())
+        }
+    }
+
+    private fun getFakeComments(): List<Comment> {
+        val list = mutableListOf<Comment>()
+        for (i in 0 .. 15){
+            list.add(getFakeComment(i))
+        }
+        return list
+    }
+
+    private fun getFakeComment(i: Int): Comment {
+        return Comment(
+            id = i,
+            groupText = "Группа№15 Занятие№15",
+            commentText = "Комментарий от доктора написан тут в полном объеме и может быть размером в любое количество символов. Ничего не обрезается троеточиями и т.д",
+            dataText = "12 июня 2020  23:45"
+        )
     }
 
     private fun getFakeEvents(): List<Lesson> {

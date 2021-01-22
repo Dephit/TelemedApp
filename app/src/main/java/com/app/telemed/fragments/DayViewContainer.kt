@@ -19,11 +19,6 @@ class DayViewContainer(view: View) : ViewContainer(view) {
             }
             lessonText.setVisible(true)
             lessonText.isSelected = lesson.isSighned && !BuildConfig.IS_REHUB
-            /*if (Build.VERSION.SDK_I   NT >= Build.VERSION_CODES.M) {
-                textView.setTextColor(view.context!!.getColor(R.color.green_color_succsess))
-            }else {
-                textView.setTextColor(view.context!!.resources.getColor(R.color.green_color_succsess))
-            }*/
             view.setOnClickListener { onDayPressed(lesson) }
         }else {
             lessonText.setVisible(false)

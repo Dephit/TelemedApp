@@ -14,6 +14,7 @@ import com.app.telemed.*
 import com.app.telemed.databinding.AuthFragmentBinding
 import com.app.telemed.fragments.baseFragments.EmailFragment
 import com.app.telemed.viewModels.AuthViewModel
+import com.app.telemed.viewModels.baseViewModels.ModelState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +31,7 @@ class AuthFragment : EmailFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        manageSuccess(null)
+        //manageSuccess(null)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

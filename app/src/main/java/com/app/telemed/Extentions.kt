@@ -77,11 +77,12 @@ fun CalendarDay.isCurrentDay(): Boolean {
     return date == LocalDate.now()
 }
 
-fun showAlertDialogButtonClicked(view: View, listener: ()-> Unit, onCancel: ()-> Unit) {
+fun showAlertDialogButtonClicked(view: View, textId: Int, listener: ()-> Unit, onCancel: ()-> Unit): AlertDialog {
     // create an alert builder
     val builder = AlertDialog.Builder(view.context)
     // set the custom layout
     val customLayout = CustomLayoutBinding.inflate(LayoutInflater.from(view.context))
+    customLayout.textView.text = view.context.getString(textId)
     builder.setView(customLayout.root)
     // add a button
     builder.setOnDismissListener { onCancel() }
@@ -96,6 +97,7 @@ fun showAlertDialogButtonClicked(view: View, listener: ()-> Unit, onCancel: ()->
         dialog.dismiss()
         dialog.cancel()
     }
+    return dialog
 }
 
 fun Int.get00time()= String.format("%02d", this)

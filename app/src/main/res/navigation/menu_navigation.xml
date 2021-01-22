@@ -46,7 +46,7 @@
         app:popExitAnim="@anim/fragment_close_exit"
         app:popUpTo="@id/lessonScheduleFragment" />
 
-    <action
+    z<action
         android:id="@+id/action_global_scheduleFragment_navigation"
         app:destination="@id/lessonScheduleFragment"
         app:enterAnim="@anim/fragment_close_enter"

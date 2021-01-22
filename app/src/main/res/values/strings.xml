@@ -60,5 +60,9 @@
     <string name="comment">Комментарий</string>
     <string name="leave_your_comment">Оставьте ваш комментарий</string>
     <string name="write_here">Напишите тут...</string>
+    <string name="com_doctor">Коммент. врача</string>
+    <string name="com_instructor">Коммент. инструктора</string>
+    <string name="common_data">Общие данные</string>
+    <string name="are_you_sure_you_wanna_leave_account">Вы действительно хотите выйти из аккаунта?</string>
 
 </resources>
