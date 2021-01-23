@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profile_navegation.xml"
-    app:startDestination="@id/commentListFragment">
+    app:startDestination="@id/loadingFragment">
 
     <fragment
         android:id="@+id/commentListFragment"
@@ -14,4 +14,17 @@
         android:id="@+id/action_global_commentListFragment"
         app:destination="@id/commentListFragment"
         app:popUpTo="@id/profile_navegation.xml" />
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.app.telemed.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" />
+    <fragment
+        android:id="@+id/commonDataFragment2"
+        android:name="com.app.telemed.CommonDataFragment"
+        android:label="common_data_fragment"
+        tools:layout="@layout/common_data_fragment" />
+    <action
+        android:id="@+id/action_global_commonDataFragment2"
+        app:destination="@id/commonDataFragment2" />
 </navigation>

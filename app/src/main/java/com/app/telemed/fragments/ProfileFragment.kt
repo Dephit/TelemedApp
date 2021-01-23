@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.app.telemed.BuildConfig
 import com.app.telemed.viewModels.ProfileViewModel
 import com.app.telemed.R
 import com.app.telemed.databinding.CustomTabBinding
@@ -38,10 +39,6 @@ class ProfileFragment : BaseFragment() {
         }
     }
 
-    override fun observe() {
-
-    }
-
     override fun restoreState(savedInstanceState: Bundle?) {
         setTabs()
     }
@@ -49,20 +46,25 @@ class ProfileFragment : BaseFragment() {
     private fun setTabs() {
         val vv = CustomTabBinding.inflate(LayoutInflater.from(requireContext()))
         vv.customTabTextView.text = getString(R.string.leave_text)
+        if(BuildConfig.IS_REHUB){
+            binding.tabLayout.getTabAt(0)?.setText(R.string.com_doctor)
+            binding.tabLayout.getTabAt(1)?.setText(R.string.com_instructor)
+        }else {
+            binding.tabLayout.getTabAt(0)?.setText(R.string.com_coach)
+            binding.tabLayout.getTabAt(1)?.setText(R.string.com_main_coach)
+        }
         binding.tabLayout.getTabAt(3)?.customView = vv.root
+        binding.tabLayout.isEnabled = false
     }
 
     override fun setListeners() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
-                    3 -> {
-                        showDialog()
-                        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(2))
-                    }
-                    1 -> {
-                        //binding.fragment.findNavController().navigate(R.id.action_global_commentListFragment, viewModel.getDoctorComments())
-                    }
+                    0 -> navigateToDoctor()
+                    1 -> navigateToInstructor()
+                    2 -> navigateToCommonData()
+                    3 -> navigateToExitDialog()
                 }
             }
 
@@ -75,6 +77,23 @@ class ProfileFragment : BaseFragment() {
             }
 
         })
+    }
+
+    private fun navigateToExitDialog() {
+        showDialog()
+        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(2))
+    }
+
+    private fun navigateToCommonData() {
+        binding.fragment.findNavController().navigate(R.id.action_global_commonDataFragment2, viewModel.getInstructorComments())
+    }
+
+    private fun navigateToInstructor() {
+        binding.fragment.findNavController().navigate(R.id.action_global_commentListFragment, viewModel.getInstructorComments())
+    }
+
+    private fun navigateToDoctor() {
+        binding.fragment.findNavController().navigate(R.id.action_global_commentListFragment, viewModel.getDoctorComments())
     }
 
     private fun showDialog() {
@@ -92,7 +111,9 @@ class ProfileFragment : BaseFragment() {
     }
 
     override fun <T> manageSuccess(obj: T?) {
-
+        binding.tabLayout.isEnabled = true
+        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0))
+        navigateToDoctor()
     }
 
     override fun manageError(bool: Boolean) {

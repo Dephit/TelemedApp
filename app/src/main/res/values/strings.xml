@@ -44,8 +44,8 @@
     <string name="conversation_with_coach">Проходит общение с тренером</string>
     <string name="conversation_with_instructor">Проходит общение с инструктором</string>
     <string name="are_you_sure_you_wanna_leave">Вы действительно хотите выйти из занятия?</string>
-    <string name="cancel_text" >Отмена</string>
-    <string name="yes_leave_text" >Да, выйти</string>
+    <string name="cancel_text">Отмена</string>
+    <string name="yes_leave_text">Да, выйти</string>
     <string name="question_title_text">Занятие завершено</string>
     <string name="question_subtitle_text">Пожалуйста ответьте на несколько вопросов о вашем самочувствии</string>
     <string name="to_questions">Перейти к вопросам</string>
@@ -61,8 +61,27 @@
     <string name="leave_your_comment">Оставьте ваш комментарий</string>
     <string name="write_here">Напишите тут...</string>
     <string name="com_doctor">Коммент. врача</string>
+    <string name="com_main_coach">Коммент. глав.тренера</string>
     <string name="com_instructor">Коммент. инструктора</string>
+    <string name="com_coach">Коммент. тренера</string>
     <string name="common_data">Общие данные</string>
     <string name="are_you_sure_you_wanna_leave_account">Вы действительно хотите выйти из аккаунта?</string>
+    <string name="height_text">Рост (см) *</string>
+    <string name="weight_text">Вес (кг) *</string>
+    <string name="age_text">Возраст *</string>
+    <string name="sex_text">Пол *</string>
+    <string name="male_text">Мужской</string>
+    <string name="female_text">Женский</string>
+    <string name="your_name">Ваше имя</string>
+    <string name="your_surname">Ваша фамилия</string>
+    <string name="nozoology_text">Нозология *</string>
+    <string name="file_text">Выписка или карта пациента *</string>
+    <string name="name_text">Имя *</string>
+    <string name="surname_text">Фамилия *</string>
+    <string name="delete_text">Удалить файл</string>
+    <string name="additional_posibilities">Дополнительные данные (особенности)</string>
+    <string name="additional_hint">Дополлнительные особенности</string>
+    <string name="submit_text">Сохранить изменения</string>
+    <string name="goal_text">Цель *</string>
 
 </resources>

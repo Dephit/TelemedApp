@@ -12,6 +12,7 @@ class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         v.commentText.text = concert?.commentText
         v.groupText.text = concert?.groupText
         v.dateText.text = concert?.dataText
+        v.root.isActivated = concert?.isSeen == true
     }
 
 }

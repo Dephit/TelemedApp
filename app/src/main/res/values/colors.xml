@@ -31,5 +31,6 @@
     <color name="gray_text_color_pressed" >#F8F8F8</color>
     <color name="green_color_succsess_pressed">#438D5D</color>
     <color name="black_transparent">#80000000</color>
+    <color name="comment_pressed">#F4F4FF</color>
 
 </resources>

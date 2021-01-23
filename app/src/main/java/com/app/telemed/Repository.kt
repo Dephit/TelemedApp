@@ -106,7 +106,7 @@ class RepositoryImpl(api: Api): Repository {
 
     private fun getFakeComments(): List<Comment> {
         val list = mutableListOf<Comment>()
-        for (i in 0 .. 15){
+        for (i in 0 .. 30){
             list.add(getFakeComment(i))
         }
         return list
@@ -115,15 +115,16 @@ class RepositoryImpl(api: Api): Repository {
     private fun getFakeComment(i: Int): Comment {
         return Comment(
             id = i,
-            groupText = "Группа№15 Занятие№15",
+            groupText = "Группа№$i Занятие№$i",
             commentText = "Комментарий от доктора написан тут в полном объеме и может быть размером в любое количество символов. Ничего не обрезается троеточиями и т.д",
-            dataText = "12 июня 2020  23:45"
+            dataText = "12 июня 2020  23:45",
+                isSeen = Random.nextBoolean()
         )
     }
 
     private fun getFakeEvents(): List<Lesson> {
         val list = mutableListOf<Lesson>()
-        for (i in 0 .. 15){
+        for (i in 0 .. 50){
             list.add(getFakeEvent())
         }
         return list

@@ -10,6 +10,7 @@ import androidx.paging.DataSource
 import androidx.paging.PagedList
 import com.app.telemed.interfaces.Repository
 import com.app.telemed.viewModels.baseViewModels.BaseViewModel
+import com.app.telemed.viewModels.baseViewModels.ModelState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -25,11 +26,13 @@ class ProfileViewModel @ViewModelInject constructor(
 
 
     private fun getComments() {
-
         viewModelScope.launch {
             repository.getComments().collect {
-                doctorComments = it
-                instructorComments = it
+                if (it != null) {
+                    doctorComments = it.subList(0, it.size / 2).toList()
+                    instructorComments = it.subList(it.size / 2, it.size ).toList()
+                    modelState.postValue(ModelState.Success(it))
+                }
             }
         }
     }
@@ -38,7 +41,11 @@ class ProfileViewModel @ViewModelInject constructor(
     var instructorComments: List<Comment>? = null
 
 
-    fun getDoctorComments(): Bundle = bundleOf("comments" to doctorComments)
+    fun getDoctorComments(): Bundle = bundleOf("comments" to doctorComments )
+
+    fun getInstructorComments(): Bundle = bundleOf("comments" to instructorComments )
+
+
 
 
 }

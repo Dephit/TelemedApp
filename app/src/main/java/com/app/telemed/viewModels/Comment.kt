@@ -5,6 +5,7 @@ import android.os.Parcelable
 
 data class Comment(
     var id: Int = 0,
+    var isSeen: Boolean? = false,
     var groupText: String? = "",
     var lessonText: String? = "",
     var commentText: String? = "",
@@ -12,6 +13,7 @@ data class Comment(
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
+        parcel.readByte() != 0.toByte(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -21,6 +23,7 @@ data class Comment(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
+        parcel.writeByte(if (isSeen == true) 1 else 0)
         parcel.writeString(groupText)
         parcel.writeString(lessonText)
         parcel.writeString(commentText)
