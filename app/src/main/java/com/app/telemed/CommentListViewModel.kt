@@ -69,3 +69,26 @@ class ConcertAdapter() : RecyclerView.Adapter<CommentViewHolder>() {
 
 
 }
+
+class PromocodeAdapter() : RecyclerView.Adapter<PromocodeViewHolder>() {
+
+    var list: List<Comment> = listOf()
+
+    fun updateList(_list: List<Comment>){
+        list = _list
+        notifyDataSetChanged()
+    }
+
+    override fun onBindViewHolder(holder: PromocodeViewHolder, position: Int) {
+        holder.bindTo(list[position])
+    }
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PromocodeViewHolder {
+        return PromocodeViewHolder(CommentViewBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false).root)
+    }
+
+    override fun getItemCount(): Int = list.size
+
+
+
+}

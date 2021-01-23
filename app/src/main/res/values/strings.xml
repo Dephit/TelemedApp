@@ -83,5 +83,6 @@
     <string name="additional_hint">Дополлнительные особенности</string>
     <string name="submit_text">Сохранить изменения</string>
     <string name="goal_text">Цель *</string>
+    <string name="promocodes">Промокоды</string>
 
 </resources>

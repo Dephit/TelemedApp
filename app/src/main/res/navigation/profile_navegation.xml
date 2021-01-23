@@ -27,4 +27,12 @@
     <action
         android:id="@+id/action_global_commonDataFragment2"
         app:destination="@id/commonDataFragment2" />
+    <fragment
+        android:id="@+id/promocodeFragment"
+        android:name="com.app.telemed.PromocodeFragment"
+        android:label="promocode_fragment"
+        tools:layout="@layout/promocode_fragment" />
+    <action
+        android:id="@+id/action_global_promocodeFragment"
+        app:destination="@id/promocodeFragment" />
 </navigation>

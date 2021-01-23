@@ -49,11 +49,13 @@ class ProfileFragment : BaseFragment() {
         if(BuildConfig.IS_REHUB){
             binding.tabLayout.getTabAt(0)?.setText(R.string.com_doctor)
             binding.tabLayout.getTabAt(1)?.setText(R.string.com_instructor)
+            binding.tabLayout.getTabAt(3)?.let { binding.tabLayout.removeTab(it) }
         }else {
             binding.tabLayout.getTabAt(0)?.setText(R.string.com_coach)
             binding.tabLayout.getTabAt(1)?.setText(R.string.com_main_coach)
         }
-        binding.tabLayout.getTabAt(3)?.customView = vv.root
+
+        binding.tabLayout.getTabAt(binding.tabLayout.tabCount - 1)?.customView = vv.root
         binding.tabLayout.isEnabled = false
     }
 
@@ -64,7 +66,8 @@ class ProfileFragment : BaseFragment() {
                     0 -> navigateToDoctor()
                     1 -> navigateToInstructor()
                     2 -> navigateToCommonData()
-                    3 -> navigateToExitDialog()
+                    3 -> navigateToPromocodes()
+                    binding.tabLayout.tabCount - 1 -> navigateToExitDialog()
                 }
             }
 
@@ -77,6 +80,14 @@ class ProfileFragment : BaseFragment() {
             }
 
         })
+    }
+
+    private fun navigateToPromocodes() {
+        if(BuildConfig.IS_REHUB)
+            navigateToExitDialog()
+        else {
+            binding.fragment.findNavController().navigate(R.id.action_global_promocodeFragment, viewModel.getPromocodes())
+        }
     }
 
     private fun navigateToExitDialog() {

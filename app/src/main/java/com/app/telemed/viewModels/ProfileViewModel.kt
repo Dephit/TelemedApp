@@ -13,6 +13,7 @@ import com.app.telemed.viewModels.baseViewModels.BaseViewModel
 import com.app.telemed.viewModels.baseViewModels.ModelState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class ProfileViewModel @ViewModelInject constructor(
     private val repository: Repository,
@@ -45,7 +46,23 @@ class ProfileViewModel @ViewModelInject constructor(
 
     fun getInstructorComments(): Bundle = bundleOf("comments" to instructorComments )
 
+    fun getPromocodes(): Bundle {
+        val list = mutableListOf<Promocode>()
+        for (i in 0 .. 30){
+            list.add(getPromocode(i))
+        }
+        return bundleOf("promocodes" to list)
+    }
 
 
+
+    private fun getPromocode(i: Int): Promocode {
+        return Promocode(
+            id = i,
+            name = "$i",
+            date = "до 12.10.2020 20:00",
+            isPassed = Random.nextBoolean()
+        )
+    }
 
 }
