@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.app.telemed.LESSONS
@@ -82,6 +83,7 @@ class ScheduleFragment : BaseFragment() {
 
     override fun setListeners() {
         binding.swiperefresh.setColorSchemeColors(getColor(requireContext(), R.color.primary_button_color))
+
         binding.swiperefresh.setOnRefreshListener {
             viewModel.getEvents()
         }
@@ -89,6 +91,7 @@ class ScheduleFragment : BaseFragment() {
 
     override fun manageLoading(b: Boolean) {
         binding.swiperefresh.isRefreshing = b
+        binding.swiperefresh.isVisible = b
     }
 
     override fun <T> manageSuccess(obj: T?) {

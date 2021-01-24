@@ -65,7 +65,10 @@ class LessonFragment : LessonBaseFragment() {
             lessonName.text = lesson.title
             time.text = lesson.getTimeDetail()
 
-            viewModel.setTimer(lesson)
+            if(lesson.isPassed()){
+                viewModel.setTimer()
+            }else
+                viewModel.setTimer(lesson)
             setDoctors(doctorAvatar, instructorAvatar, doctorText, instructorText)
         }
     }
@@ -75,7 +78,6 @@ class LessonFragment : LessonBaseFragment() {
             coachLayout.setVisible(false)
             constraintLayout.setVisible(false)
             soonWillStartLayout.setVisible(false)
-
             lessonName.text = getString(R.string.no_next_lesson)
         }
     }

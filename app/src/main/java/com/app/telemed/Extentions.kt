@@ -9,7 +9,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
+import com.app.telemed.databinding.AddPromoViewBinding
 import com.app.telemed.databinding.CustomLayoutBinding
+import com.app.telemed.databinding.PromocodeViewBinding
+import com.app.telemed.viewModels.Promocode
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -97,6 +101,27 @@ fun showAlertDialogButtonClicked(view: View, textId: Int, listener: ()-> Unit, o
         dialog.dismiss()
         dialog.cancel()
     }
+    return dialog
+}
+
+fun showPromoDialogButtonClicked(view: View, listener: (Promocode)-> Unit, onCancel: ()-> Unit): AlertDialog {
+    // create an alert builder
+    val builder = AlertDialog.Builder(view.context)
+    // set the custom layout
+    val customLayout = AddPromoViewBinding.inflate(LayoutInflater.from(view.context))
+    builder.setView(customLayout.root)
+    // add a button
+    builder.setOnDismissListener { onCancel() }
+    customLayout.addPromoButton.isEnabled = false
+    customLayout.addPromoEditText.addTextChangedListener {
+        customLayout.addPromoButton.isEnabled = true
+    }
+    customLayout.addPromoButton.setOnClickListener {
+        listener(Promocode(100, customLayout.addPromoEditText.text.toString(), "12.21.21", false))
+    }
+    // create and show the alert dialog
+    val dialog = builder.create()
+    dialog.show()
     return dialog
 }
 

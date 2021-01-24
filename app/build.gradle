@@ -49,12 +49,14 @@ android {
             applicationIdSuffix '.rehab'
             versionNameSuffix '-rehub'
             buildConfigField "boolean", "IS_REHUB", "${true}"
+            resValue "string", "app_name", "Rehab TelemedApp"
         }
         fitness {
             dimension 'telemed'
             applicationIdSuffix '.fitness'
             versionNameSuffix '-fitness'
             buildConfigField "boolean", "IS_REHUB", "${false}"
+            resValue "string", "app_name", "Fitness TelemedApp"
         }
     }
 

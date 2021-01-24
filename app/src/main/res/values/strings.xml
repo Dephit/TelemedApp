@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">TelemedApp</string>
     <string name="auth_title_text">Авторизация в приложении</string>
     <string name="password_recovery_text">Восстановление пароля</string>
     <string name="we_will_sent_your_pass_text">Мы вышлем вам на почту ссылку для восстановления</string>
@@ -84,5 +83,12 @@
     <string name="submit_text">Сохранить изменения</string>
     <string name="goal_text">Цель *</string>
     <string name="promocodes">Промокоды</string>
+    <string name="promocode_name">Название промокода</string>
+    <string name="date_has_passed">Срок истёк</string>
+    <string name="add_promocode">+ Добавить промокод</string>
+    <string name="new_promo">Новый промокод</string>
+    <string name="insert_code">Введите код</string>
+    <string name="code_text">Код</string>
+    <string name="add_promo_text">Добавить</string>
 
 </resources>

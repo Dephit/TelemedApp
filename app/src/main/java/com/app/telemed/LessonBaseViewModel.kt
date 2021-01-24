@@ -28,6 +28,12 @@ open class LessonBaseViewModel(open val repository: Repository, savedStateHandle
         minutesLeft = Calendar.getInstance().get(Calendar.MINUTE) - lesson.date.get(Calendar.MINUTE)
     }
 
+    fun setTimer(){
+        daysLeft = 0
+        hoursLeft = 0
+        minutesLeft = 0
+    }
+
     override suspend fun getTimer(): Flow<String> {
         return flow {
             while (true) {
@@ -45,9 +51,11 @@ open class LessonBaseViewModel(open val repository: Repository, savedStateHandle
                         daysLeft--
                     }
                 }
-                val time = String.format(
-                    "Осталось %2d дн. %2d ч. %02d м.",
-                    daysLeft, hoursLeft, minutesLeft
+                val time = if(minutesLeft == 0 && hoursLeft == 0 && daysLeft == 0){
+                    ""
+                }else String.format(
+                        "Осталось %2d дн. %2d ч. %02d м.",
+                        daysLeft, hoursLeft, minutesLeft
                 )
 
                 emit(time)

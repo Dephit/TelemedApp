@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 
 abstract class LessonBaseFragment: BaseFragment(){
 
+    private var showQuestions: Boolean = false
     abstract override val viewModel: ILessonViewModel
 
     protected fun setSignLessonButton(toBeginningOfLessonButton: Button) {
@@ -31,15 +32,16 @@ abstract class LessonBaseFragment: BaseFragment(){
 
     protected fun setBeginLessonButton(toBeginningOfLessonButton: Button) {
         toBeginningOfLessonButton.setOnClickListener {
-            viewModel.getLesson()?.passed = 1
+            showQuestions = true
             startActivity(Intent(context, LessonInProgressActivity::class.java).putExtra(LESSONS, viewModel.getLesson()))
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if(viewModel.getLesson()?.isPassed() == true){
+        if(showQuestions){
             findNavController().navigate(R.id.action_global_lessonQuesteningFragment)
+            showQuestions = false
         }
     }
 

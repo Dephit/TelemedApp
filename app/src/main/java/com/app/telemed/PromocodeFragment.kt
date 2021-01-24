@@ -1,16 +1,15 @@
 package com.app.telemed
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.telemed.databinding.PromocodeFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
-import com.app.telemed.viewModels.Comment
+import com.app.telemed.viewModels.Promocode
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +20,8 @@ class PromocodeFragment : BaseFragment() {
     }
 
     lateinit var binding: PromocodeFragmentBinding
+
+    lateinit var dialog: AlertDialog
 
     override val viewModel: PromocodeViewModel  by navGraphViewModels(R.id.profile_navegation_xml) {
         defaultViewModelProviderFactory
@@ -37,14 +38,42 @@ class PromocodeFragment : BaseFragment() {
     }
 
     override fun restoreState(savedInstanceState: Bundle?) {
-        val adapter = ConcertAdapter()
+        val adapter = PromocodeAdapter()
         binding.commentRv.layoutManager = LinearLayoutManager(requireContext())
         binding.commentRv.adapter = adapter
         viewModel.restoreState(arguments)
     }
 
     override fun setListeners() {
+        binding.addPromoButton.setOnClickListener {
+            showDialog()
+        }
+    }
 
+    private fun showDialog() {
+        if(!this::dialog.isInitialized)
+            dialog = showPromoDialogButtonClicked(binding.root,
+                    {promocode ->
+                        (binding.commentRv.adapter as PromocodeAdapter).addElement(promocode)
+                        dialog.dismiss()
+                    },
+                    {
+
+                    }
+            )
+        else dialog.show()
+    }
+
+    override fun onResume() {
+        if(this::dialog.isInitialized)
+            dialog.dismiss()
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        if(this::dialog.isInitialized)
+            dialog.dismiss()
+        super.onDestroy()
     }
 
     override fun manageLoading(b: Boolean) {
@@ -53,7 +82,7 @@ class PromocodeFragment : BaseFragment() {
 
     override fun <T> manageSuccess(obj: T?) {
         if(obj != null){
-            (binding.commentRv.adapter as ConcertAdapter).updateList(obj as List<Comment>)
+            (binding.commentRv.adapter as PromocodeAdapter).updateList(obj as List<Promocode>)
         }
     }
 
