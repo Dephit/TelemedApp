@@ -3,6 +3,7 @@ package com.app.telemed
 import android.app.Application
 import com.shakebugs.shake.Shake
 import dagger.hilt.android.HiltAndroidApp
+import io.cobrowse.CobrowseIO
 
 @HiltAndroidApp
 class App : Application(){
@@ -16,7 +17,8 @@ class App : Application(){
                 .build()*/
         Shake.start(this, "j7bhDmezMssQXiQwPxDApLE09RXv4WBnbkPMYft8", "9bVGMN64IewZaTt3pcvssIz2zLjmFqI92SCVAm1ywLTmp2doDVMHclP")
         Shake.getReportConfiguration().isShowFloatingReportButton = true
-
+        /*CobrowseIO.instance().license("3eE44hHfPpDm_w");
+        CobrowseIO.instance().start(this);*/
     }
 
 }
