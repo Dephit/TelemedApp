@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.app.telemed.interfaces.Repository
 import com.app.telemed.interfaces.BaseViewModelInterface
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -20,8 +21,10 @@ open class BaseViewModel constructor(
     private val savedStateHandle: SavedStateHandle
 ): ViewModel(), BaseViewModelInterface {
 
+    @ExperimentalCoroutinesApi
     protected val modelState: MutableStateFlow<ModelState> = MutableStateFlow(ModelState.Normal)
 
+    @ExperimentalCoroutinesApi
     override fun getState(): MutableStateFlow<ModelState> = modelState
 }
 
