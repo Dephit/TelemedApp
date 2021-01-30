@@ -23,7 +23,7 @@ class LessonViewModel @ViewModelInject constructor(
 
     fun getEvent() {
         if(modelState.value !is ModelState.Loading) {
-            modelState.postValue(ModelState.Loading)
+            modelState.value = ModelState.Loading
             viewModelScope.launch {
                 repository.getEvent().collect {
                     postLesson(it)

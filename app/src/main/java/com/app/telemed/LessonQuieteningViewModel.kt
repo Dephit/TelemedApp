@@ -33,7 +33,7 @@ private val savedStateHandle: SavedStateHandle
                     if (_questions != null) {
                         quest = _questions
                     }
-                    modelState.postValue(ModelState.Success(quest))
+                    modelState.value = ModelState.Success(quest)
                 }
         }
     }

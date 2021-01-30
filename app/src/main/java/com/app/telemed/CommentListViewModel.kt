@@ -26,7 +26,7 @@ class CommentListViewModel @ViewModelInject constructor(
 
     fun restoreState(arguments: Bundle?) {
         comments = arguments?.getParcelableArrayList("comments")
-        modelState.postValue(ModelState.Success(comments))
+        modelState.value = ModelState.Success(comments)
     }
 
 }

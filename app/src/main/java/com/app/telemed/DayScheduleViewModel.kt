@@ -15,8 +15,8 @@ class DayScheduleViewModel @ViewModelInject constructor(
 ) : BaseViewModel(repository, savedStateHandle) {
 
     fun addLesson(lesson: List<Lesson>?) {
-        modelState.postValue(ModelState.Success(lesson))
-        modelState.value = ModelState.Normal
+        modelState.value = ModelState.Success(lesson)
+        //modelState.value = ModelState.Normal
     }
 
 }

@@ -25,17 +25,17 @@ class ScheduleViewModel @ViewModelInject constructor(
     var list: List<Lesson> = listOf()
 
     fun getEvents() {
-        modelState.postValue(ModelState.Loading)
+        modelState.value = ModelState.Loading
         viewModelScope.launch {
             repository.getEvents()
                 .collect { value ->
                     list = value
-                    modelState.postValue(ModelState.Success(value))
+                    modelState.value = ModelState.Success(value)
                 }
         }
     }
 
     fun toDay(bundleOf: Bundle) {
-        modelState.postValue(ModelState.Success(bundleOf))
+        modelState.value = ModelState.Success(bundleOf)
     }
 }

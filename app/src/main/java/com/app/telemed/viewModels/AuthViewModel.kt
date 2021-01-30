@@ -19,18 +19,18 @@ class AuthViewModel @ViewModelInject constructor(
 
     fun authorize(email: String, pass: String) {
         if(!isValidEmail(email)){
-            modelState.postValue(ModelState.Error())
+            modelState.value = ModelState.Error()
             return
         }
 
-        modelState.postValue(ModelState.Loading)
+        modelState.value = ModelState.Loading
         viewModelScope.launch {
             repository.logIn(email, pass)
                     .collect { value ->
                         if(value == 1){
-                            modelState.postValue(ModelState.Success(value))
+                            modelState.value = ModelState.Success(value)
                         }else {
-                            modelState.postValue(ModelState.Error())
+                            modelState.value = ModelState.Error()
                         }
                     }
         }

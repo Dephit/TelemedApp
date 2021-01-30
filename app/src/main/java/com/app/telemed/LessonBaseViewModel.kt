@@ -69,9 +69,9 @@ open class LessonBaseViewModel(open val repository: Repository, savedStateHandle
     protected fun postLesson(it: Lesson?) {
         lessonValue = it
         if(it == null){
-            modelState.postValue(ModelState.Success(null))
+            modelState.value = ModelState.Success(null)
         }else
-            modelState.postValue(ModelState.Success(it))
+            modelState.value = ModelState.Success(it)
     }
 }
 

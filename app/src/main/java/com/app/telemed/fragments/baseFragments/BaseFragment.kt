@@ -6,9 +6,11 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.app.telemed.interfaces.BaseViewModelInterface
 import com.app.telemed.viewModels.baseViewModels.ModelState
 import com.app.telemed.interfaces.FragmentInterface
+import kotlinx.coroutines.flow.collect
 
 
 abstract class BaseFragment: Fragment(), FragmentInterface {
@@ -23,20 +25,22 @@ abstract class BaseFragment: Fragment(), FragmentInterface {
     }
 
     override fun observe() {
-        viewModel.getState().observe(viewLifecycleOwner, {
-            if(it is ModelState.Loading)
-                manageLoading(true)
-            else
-                manageLoading(false)
-            if(it is ModelState.Error)
-                manageError(true)
-            else
-                manageError(false)
-            if(it is ModelState.Success<*>){
-                manageSuccess(it.obj)
+        lifecycleScope.launchWhenStarted {
+            viewModel.getState().collect{
+                if(it is ModelState.Loading)
+                    manageLoading(true)
+                else
+                    manageLoading(false)
+                if(it is ModelState.Error)
+                    manageError(true)
+                else
+                    manageError(false)
+                if(it is ModelState.Success<*>){
+                    manageSuccess(it.obj)
+                }
+                observeTo(it)
             }
-            observeTo(it)
-        })
+        }
     }
 
     override fun observeTo(modelState: ModelState?) {

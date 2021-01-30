@@ -32,7 +32,7 @@ class ProfileViewModel @ViewModelInject constructor(
                 if (it != null) {
                     doctorComments = it.subList(0, it.size / 2).toList()
                     instructorComments = it.subList(it.size / 2, it.size ).toList()
-                    modelState.postValue(ModelState.Success(it))
+                    modelState.value = ModelState.Success(it)
                 }
             }
         }

@@ -17,18 +17,18 @@ class PasswordRecoveryViewModel  @ViewModelInject constructor(
 
     fun restoreEmail(email: String) {
         if(!isValidEmail(email)){
-            modelState.postValue(ModelState.Error())
+            modelState.value = ModelState.Error()
             return
         }
 
-        modelState.postValue(ModelState.Loading)
+        modelState.value = ModelState.Loading
         viewModelScope.launch {
             repository.restoreEmail(email)
                     .collect { value ->
                         if(value == 1){
-                            modelState.postValue(ModelState.Success(value))
+                            modelState.value = ModelState.Success(value)
                         }else {
-                            modelState.postValue(ModelState.Error())
+                            modelState.value = ModelState.Error()
                         }
                     }
         }

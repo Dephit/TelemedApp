@@ -20,7 +20,7 @@ class PromocodeViewModel @ViewModelInject constructor(
 
     fun restoreState(arguments: Bundle?) {
         promocodes = arguments?.getParcelableArrayList("promocodes")
-        modelState.postValue(ModelState.Success(promocodes))
+        modelState.value = ModelState.Success(promocodes)
     }
 
 
