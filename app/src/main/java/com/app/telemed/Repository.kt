@@ -38,8 +38,7 @@ class RepositoryImpl(private val api: Api, private val db: AppDatabase): Reposit
         return flow {
             val response = api.logOut(token)
             if(response.status == "success") {
-                val loginResponse = db.loginDao().get()
-                db.loginDao().delete(loginResponse!!)
+                db.clearAllTables()
                 emit(response)
             }else {
                 emit(null)

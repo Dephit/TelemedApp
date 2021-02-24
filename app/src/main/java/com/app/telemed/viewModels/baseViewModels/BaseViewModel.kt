@@ -1,5 +1,6 @@
 package com.app.telemed.viewModels.baseViewModels
 
+import android.view.Display
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -26,5 +27,8 @@ open class BaseViewModel constructor(
 
     @ExperimentalCoroutinesApi
     override fun getState(): MutableStateFlow<ModelState> = modelState
+    fun restoreState() {
+        modelState.value = ModelState.Normal
+    }
 }
 

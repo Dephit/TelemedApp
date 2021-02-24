@@ -18,6 +18,7 @@ import com.app.telemed.fragments.baseFragments.BaseFragment
 import com.app.telemed.models.LoginResponse
 import com.app.telemed.models.PasswordRestoreResponse
 import com.app.telemed.showAlertDialogButtonClicked
+import com.app.telemed.viewModels.baseViewModels.ModelState
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -124,13 +125,18 @@ class ProfileFragment : BaseFragment() {
 
     override fun <T> manageSuccess(obj: T?) {
         if(obj is PasswordRestoreResponse?){
-            showToast(obj?.status)
             findNavController().popBackStack(R.id.menu_navigation_xml, true)
             findNavController().navigate(R.id.menu_navigation_xml, bundleOf("back" to "auth"))
         }else {
             binding.tabLayout.isEnabled = true
             binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0))
             navigateToDoctor()
+        }
+    }
+
+    override fun observeTo(modelState: ModelState?) {
+        if(modelState is ModelState.Error){
+            showToast(modelState.msg)
         }
     }
 

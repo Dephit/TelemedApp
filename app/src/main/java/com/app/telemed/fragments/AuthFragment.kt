@@ -62,6 +62,7 @@ class AuthFragment : EmailFragment() {
     }
 
     override fun <T> manageSuccess(obj: T?) {
+        viewModel.restoreState()
         val bundle = bundleOf(viewModel.EMAIL to getEmail())
         findNavController().navigate(R.id.toLessons, bundle)
     }

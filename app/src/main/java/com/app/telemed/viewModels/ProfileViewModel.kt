@@ -11,7 +11,10 @@ import androidx.paging.PagedList
 import com.app.telemed.interfaces.Repository
 import com.app.telemed.viewModels.baseViewModels.BaseViewModel
 import com.app.telemed.viewModels.baseViewModels.ModelState
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -65,12 +68,20 @@ class ProfileViewModel @ViewModelInject constructor(
         )
     }
 
+    @ExperimentalCoroutinesApi
     fun logOut() {
         viewModelScope.launch {
-            repository.logOut().collect {
-                if(it != null) {
-                    modelState.value = ModelState.Success(it)
-                }
+            if(modelState.value !is ModelState.Loading) {
+                repository.logOut()
+                        .onStart { modelState.value = ModelState.Loading }
+                        .catch { modelState.value = ModelState.Error("Ошибка") }
+                        .collect {
+                            if (it != null) {
+                                modelState.value = ModelState.Success(it)
+                            }else {
+                                modelState.value = ModelState.Error("Ошибка")
+                            }
+                        }
             }
         }
     }

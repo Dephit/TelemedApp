@@ -1,10 +1,8 @@
 package com.app.telemed.interfaces
 
-import com.app.telemed.USER
-import com.app.telemed.models.PasswordRestoreResponse
 import com.app.telemed.models.LoginResponse
+import com.app.telemed.models.PasswordRestoreResponse
 import retrofit2.http.*
-
 
 interface Api {
 
