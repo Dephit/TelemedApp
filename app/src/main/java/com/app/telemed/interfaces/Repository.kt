@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository{
     suspend fun logIn(email: String, pass: String): Flow<LoginResponse?>
-    suspend fun logOut(): Flow<LoginResponse?>
+    suspend fun logOut(): Flow<PasswordRestoreResponse?>
     suspend fun isLogged(): Flow<LoginResponse?>
     suspend fun restoreEmail(email: String): Flow<PasswordRestoreResponse>
 

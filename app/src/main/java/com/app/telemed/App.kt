@@ -4,12 +4,14 @@ import android.app.Application
 import com.shakebugs.shake.Shake
 import dagger.hilt.android.HiltAndroidApp
 import io.cobrowse.CobrowseIO
+import kotlinx.coroutines.CoroutineScope
 
 @HiltAndroidApp
 class App : Application(){
 
     override fun onCreate() {
         super.onCreate();
+
         /*Instabug.Builder(this, "f0a1e677b6138e45621db7111ca967c9")
                 .setInvocationEvents(
                         InstabugInvocationEvent.SHAKE,

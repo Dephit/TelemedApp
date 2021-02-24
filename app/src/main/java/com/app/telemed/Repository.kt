@@ -17,6 +17,11 @@ import kotlin.random.Random
 
 @Singleton
 class RepositoryImpl(private val api: Api, private val db: AppDatabase): Repository {
+
+    val token by lazy {
+        "Bearer ${db.loginDao().get()?.token}"
+    }
+
     override fun getClient(): String {
         return "hello"
     }
@@ -29,11 +34,16 @@ class RepositoryImpl(private val api: Api, private val db: AppDatabase): Reposit
         }.flowOn(IO)
     }
 
-    override suspend fun logOut(): Flow<LoginResponse?> {
+    override suspend fun logOut(): Flow<PasswordRestoreResponse?> {
         return flow {
-            val loginResponse = db.loginDao().get()
-            db.loginDao().delete(loginResponse!!)
-            emit(loginResponse)
+            val response = api.logOut(token)
+            if(response.status == "success") {
+                val loginResponse = db.loginDao().get()
+                db.loginDao().delete(loginResponse!!)
+                emit(response)
+            }else {
+                emit(null)
+            }
         }.flowOn(IO)
     }
 

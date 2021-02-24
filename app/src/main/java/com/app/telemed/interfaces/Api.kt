@@ -1,10 +1,9 @@
 package com.app.telemed.interfaces
 
+import com.app.telemed.USER
 import com.app.telemed.models.PasswordRestoreResponse
 import com.app.telemed.models.LoginResponse
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface Api {
@@ -19,6 +18,10 @@ interface Api {
     @FormUrlEncoded
     @POST("forgot_password")
     suspend fun restorePassword(@Field("email")email: String): PasswordRestoreResponse
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("logout")
+    suspend fun logOut(@Header("Authorization") auth: String): PasswordRestoreResponse
 
 
 }

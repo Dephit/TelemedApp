@@ -3,10 +3,15 @@ package com.app.telemed
 import android.annotation.SuppressLint
 import com.app.telemed.interfaces.Api
 import com.app.telemed.interfaces.Repository
+import com.app.telemed.models.LoginResponseDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,8 +33,7 @@ class ApiModule {
     @Singleton
     @Provides
     fun provideApi(): Api {
-
-        val trustAllCerts: Array<TrustManager> = arrayOf<TrustManager>(
+        val trustAllCerts: Array<TrustManager> = arrayOf(
             object : X509TrustManager {
                 @SuppressLint("TrustAllX509TrustManager")
                 @Throws(CertificateException::class)
@@ -47,32 +51,27 @@ class ApiModule {
             }
         )
 
-        // Install the all-trusting trust manager
-
-        // Install the all-trusting trust manager
         val sslContext: SSLContext = SSLContext.getInstance("SSL")
         sslContext.init(null, trustAllCerts, SecureRandom())
 
-        // Create an ssl socket factory with our all-trusting manager
-
-        // Create an ssl socket factory with our all-trusting manager
         val sslSocketFactory: SSLSocketFactory = sslContext.socketFactory
 
         val client = OkHttpClient.Builder()
-            .callTimeout(60L, TimeUnit.SECONDS)
-            .connectTimeout(60L, TimeUnit.SECONDS)
-            .sslSocketFactory(sslSocketFactory, trustAllCerts [0] as X509TrustManager)
-            .hostnameVerifier { _, _ -> true }
-            .readTimeout(60L, TimeUnit.SECONDS)
-            .writeTimeout(60L, TimeUnit.SECONDS)
-            .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BASIC
-                }
-            )
-            .build()
+                .callTimeout(60L, TimeUnit.SECONDS)
+                .connectTimeout(60L, TimeUnit.SECONDS)
+                .sslSocketFactory(sslSocketFactory, trustAllCerts [0] as X509TrustManager)
+                .hostnameVerifier { _, _ -> true }
+                .readTimeout(60L, TimeUnit.SECONDS)
+                .writeTimeout(60L, TimeUnit.SECONDS)
+                .addInterceptor(
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BASIC
+                        }
+                )
+                .build()
 
-        return Retrofit.Builder()
+
+                return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)

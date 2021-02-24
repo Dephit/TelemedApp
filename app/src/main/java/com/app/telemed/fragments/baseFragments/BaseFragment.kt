@@ -59,7 +59,7 @@ abstract class BaseFragment: Fragment(), FragmentInterface {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun showToast(msg: String){
+    fun showToast(msg: String?){
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 }

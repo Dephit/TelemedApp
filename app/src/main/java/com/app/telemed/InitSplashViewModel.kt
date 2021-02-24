@@ -12,6 +12,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+object USER {
+    var token: String? = null
+}
+
 @ExperimentalCoroutinesApi
 class InitSplashViewModel @ViewModelInject constructor(
 private val repository: Repository,
@@ -24,6 +28,7 @@ private val savedStateHandle: SavedStateHandle
     init {
         viewModelScope.launch {
             repository.isLogged().collect{
+                USER.token = it?.token
                 modelState.value = ModelState.Success(it)
             }
         }
