@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -12,6 +13,7 @@ import com.app.telemed.R
 import com.app.telemed.databinding.PasswordRecoveryFragmentBinding
 import com.app.telemed.enableProgress
 import com.app.telemed.fragments.baseFragments.EmailFragment
+import com.app.telemed.models.PasswordRestoreResponse
 import com.app.telemed.viewModels.baseViewModels.ModelState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +34,16 @@ class PasswordRecoveryFragment : EmailFragment() {
         return binding.root
     }
 
+    override fun observeTo(modelState: ModelState?) {
+        if(modelState is ModelState.Error){
+            modelState.msg?.let { showToast(it) }
+        }
+    }
+
     override fun <T> manageSuccess(obj: T?) {
+        if(obj is PasswordRestoreResponse){
+         //   showToast(obj.data)
+        }
         viewModel.getState().value = ModelState.Normal
         findNavController().navigate(R.id.action_passwordRecoveryDest_to_passwordLinkSentFragment)
     }

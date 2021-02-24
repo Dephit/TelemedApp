@@ -65,4 +65,12 @@ class ProfileViewModel @ViewModelInject constructor(
         )
     }
 
+    fun logOut() {
+        viewModelScope.launch {
+            repository.logOut().collect {
+                modelState.value = ModelState.Success(it)
+            }
+        }
+    }
+
 }

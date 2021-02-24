@@ -61,7 +61,7 @@ android {
     }
 
     android.applicationVariants.all {var ->
-        buildConfigField "String", "BASE_URL", "\"https://example.com\""
+        buildConfigField "String", "BASE_URL", "\"https://chwebna20583.bora.chost.com.ua/api/\""
     }
 
 }

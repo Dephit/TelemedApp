@@ -1,10 +1,12 @@
 package com.app.telemed.fragments
 
+import com.app.telemed.models.LoginResponse
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.findNavController
@@ -27,11 +29,6 @@ class AuthFragment : EmailFragment() {
 
     override fun setEmail(email: String?) {
         binding.emailEditText.setText(email)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        //manageSuccess(null)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -67,6 +64,12 @@ class AuthFragment : EmailFragment() {
     override fun <T> manageSuccess(obj: T?) {
         val bundle = bundleOf(viewModel.EMAIL to getEmail())
         findNavController().navigate(R.id.toLessons, bundle)
+    }
+
+    override fun observeTo(modelState: ModelState?) {
+        if(modelState is ModelState.Error){
+            Toast.makeText(requireContext(), modelState.msg, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun manageError(bool: Boolean) {

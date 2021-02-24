@@ -1,33 +1,57 @@
 package com.app.telemed
 
+
+import com.app.telemed.models.PasswordRestoreResponse
+import com.app.telemed.models.LoginResponse
 import com.app.telemed.interfaces.Api
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.interfaces.Repository
 import com.app.telemed.viewModels.Comment
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.util.*
 import javax.inject.Singleton
 import kotlin.random.Random
 
 @Singleton
-class RepositoryImpl(api: Api): Repository {
+class RepositoryImpl(private val api: Api, private val db: AppDatabase): Repository {
     override fun getClient(): String {
         return "hello"
     }
 
-    override suspend fun logIn(email: String, pass: String): Flow<Int> {
+    override suspend fun logIn(email: String, pass: String): Flow<LoginResponse> {
         return flow {
-            kotlinx.coroutines.delay(2000)
-            emit(if(email.contains("0")) 1 else -1)
-        }
+            val loginResponse = api.logIn(email, pass)
+            db.loginDao().insert(loginResponse)
+            emit(loginResponse)
+        }.flowOn(IO)
     }
 
-    override suspend fun restoreEmail(email: String): Flow<Int> {
+    override suspend fun logOut(): Flow<LoginResponse?> {
         return flow {
-            kotlinx.coroutines.delay(2000)
-            emit(if(email.contains("0")) 1 else -1)
-        }
+            val loginResponse = db.loginDao().get()
+            db.loginDao().delete(loginResponse!!)
+            emit(loginResponse)
+        }.flowOn(IO)
+    }
+
+    override suspend fun isLogged(): Flow<LoginResponse?> {
+        return flow {
+            val loginResponse = db.loginDao().get()
+            if(loginResponse != null)
+                emit(loginResponse)
+            else
+                emit(null)
+        }.flowOn(IO)
+    }
+
+    override suspend fun restoreEmail(email: String): Flow<PasswordRestoreResponse> {
+        return flow {
+            val string = api.restorePassword(email)
+            emit(string)
+        }.flowOn(IO)
     }
 
     fun getFakeEvent(): Lesson = Lesson().apply {
@@ -66,31 +90,33 @@ class RepositoryImpl(api: Api): Repository {
                         "по шкале от 1го до 10ти",
                 type = QuestionType.Mark
                 ))
-            if(BuildConfig.IS_REHUB){
-                question.add(
-                    Question(
-                        type = QuestionType.Select,
-                        variants = listOf(
-                            "Вариант №1",
-                            "Вариант №2",
-                            "Вариант №3",
-                            "Вариант №4"
-                        )
-                    ))
-            }else {
-                for (i in 0 .. 5){
-                    question.add(
-                        Question(
-                            type = QuestionType.Select,
-                            variants = listOf(
-                                "Вариант №1",
-                                "Вариант №2",
-                                "Вариант №3",
-                                "Вариант №4"
+
+            question.addAll(
+                    if(BuildConfig.IS_REHUB){
+                        List(1) {
+                            Question(
+                                    type = QuestionType.Select,
+                                    variants = listOf(
+                                            "Вариант №1",
+                                            "Вариант №2",
+                                            "Вариант №3",
+                                            "Вариант №4"
+                                    )
                             )
-                        ))
-                }
-            }
+                        }
+                    }else {
+                        List(5){
+                            Question(
+                                    type = QuestionType.Select,
+                                    variants = listOf(
+                                            "Вариант №1",
+                                            "Вариант №2",
+                                            "Вариант №3",
+                                            "Вариант №4"
+                                    )
+                            )}
+                    }
+            )
             question.add(Question(type = QuestionType.Comment))
             emit(question)
         }
@@ -105,11 +131,7 @@ class RepositoryImpl(api: Api): Repository {
     }
 
     private fun getFakeComments(): List<Comment> {
-        val list = mutableListOf<Comment>()
-        for (i in 0 .. 30){
-            list.add(getFakeComment(i))
-        }
-        return list
+        return List(30){ getFakeComment(it) }
     }
 
     private fun getFakeComment(i: Int): Comment {
@@ -123,11 +145,7 @@ class RepositoryImpl(api: Api): Repository {
     }
 
     private fun getFakeEvents(): List<Lesson> {
-        val list = mutableListOf<Lesson>()
-        for (i in 0 .. 50){
-            list.add(getFakeEvent())
-        }
-        return list
+        return List(30){ getFakeEvent() }
     }
 
 }

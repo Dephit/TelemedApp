@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 sealed class ModelState {
     class Success<T>(val obj: T? = null) : ModelState()
-    class Error(msg: String? = null) : ModelState()
+    class Error(val msg: String? = null) : ModelState()
     object Loading : ModelState()
     object Normal : ModelState()
 }

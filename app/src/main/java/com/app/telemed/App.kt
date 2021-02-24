@@ -15,8 +15,8 @@ class App : Application(){
                         InstabugInvocationEvent.SHAKE,
                         InstabugInvocationEvent.FLOATING_BUTTON)
                 .build()*/
-        Shake.start(this, "j7bhDmezMssQXiQwPxDApLE09RXv4WBnbkPMYft8", "9bVGMN64IewZaTt3pcvssIz2zLjmFqI92SCVAm1ywLTmp2doDVMHclP")
-        Shake.getReportConfiguration().isShowFloatingReportButton = true
+      /*  Shake.start(this, "j7bhDmezMssQXiQwPxDApLE09RXv4WBnbkPMYft8", "9bVGMN64IewZaTt3pcvssIz2zLjmFqI92SCVAm1ywLTmp2doDVMHclP")
+        Shake.getReportConfiguration().isShowFloatingReportButton = true*/
         /*CobrowseIO.instance().license("3eE44hHfPpDm_w");
         CobrowseIO.instance().start(this);*/
     }

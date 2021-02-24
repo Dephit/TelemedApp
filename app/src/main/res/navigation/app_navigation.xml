@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/initSplashFragment">
 
     <activity
         android:id="@+id/splashActivity"
@@ -60,4 +60,15 @@
         android:name="com.app.telemed.fragments.PasswordLinkSentFragment"
         android:label="fragment_password_link_sent"
         tools:layout="@layout/fragment_password_link_sent" />
+    <fragment
+        android:id="@+id/initSplashFragment"
+        android:name="com.app.telemed.InitSplashFragment"
+        android:label="init_splash_fragment"
+        tools:layout="@layout/init_splash_fragment" >
+        <action
+            android:id="@+id/action_initSplashFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+    </fragment>
 </navigation>

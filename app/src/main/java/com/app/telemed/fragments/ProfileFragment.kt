@@ -15,6 +15,7 @@ import com.app.telemed.R
 import com.app.telemed.databinding.CustomTabBinding
 import com.app.telemed.databinding.ProfileFragmentBinding
 import com.app.telemed.fragments.baseFragments.BaseFragment
+import com.app.telemed.models.LoginResponse
 import com.app.telemed.showAlertDialogButtonClicked
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -110,8 +111,7 @@ class ProfileFragment : BaseFragment() {
     private fun showDialog() {
         if(!this::dialog.isInitialized)
             dialog = showAlertDialogButtonClicked(binding.root, R.string.are_you_sure_you_wanna_leave_account,{
-                findNavController().popBackStack(R.id.menu_navigation_xml, true)
-                findNavController().navigate(R.id.menu_navigation_xml, bundleOf("back" to "auth"))
+                viewModel.logOut()
             }, {})
         else
             dialog.show()
@@ -122,9 +122,14 @@ class ProfileFragment : BaseFragment() {
     }
 
     override fun <T> manageSuccess(obj: T?) {
-        binding.tabLayout.isEnabled = true
-        binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0))
-        navigateToDoctor()
+        if(obj is LoginResponse?){
+            findNavController().popBackStack(R.id.menu_navigation_xml, true)
+            findNavController().navigate(R.id.menu_navigation_xml, bundleOf("back" to "auth"))
+        }else {
+            binding.tabLayout.isEnabled = true
+            binding.tabLayout.selectTab(binding.tabLayout.getTabAt(0))
+            navigateToDoctor()
+        }
     }
 
     override fun manageError(bool: Boolean) {
