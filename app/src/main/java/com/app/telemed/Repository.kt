@@ -1,11 +1,12 @@
 package com.app.telemed
 
 
-import com.app.telemed.models.PasswordRestoreResponse
-import com.app.telemed.models.LoginResponse
+import com.app.telemed.fragments.Question
+import com.app.telemed.fragments.QuestionType
 import com.app.telemed.interfaces.Api
 import com.app.telemed.interfaces.Lesson
 import com.app.telemed.interfaces.Repository
+import com.app.telemed.models.*
 import com.app.telemed.viewModels.Comment
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
@@ -13,12 +14,13 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.util.*
 import javax.inject.Singleton
+import kotlin.Error
 import kotlin.random.Random
 
 @Singleton
 class RepositoryImpl(private val api: Api, private val db: AppDatabase): Repository {
 
-    val token by lazy {
+    private val token by lazy {
         "Bearer ${db.loginDao().get()?.token}"
     }
 
@@ -32,6 +34,68 @@ class RepositoryImpl(private val api: Api, private val db: AppDatabase): Reposit
             db.loginDao().insert(loginResponse)
             emit(loginResponse)
         }.flowOn(IO)
+    }
+
+    override fun getProfile(): Flow<Profile> {
+        return flow {
+            val profile = api.profile(token)
+            if(profile.status == "success") {
+                updateProfile(profile)
+                emit(profile)
+            } else {
+              throw Error()
+            }
+        }.flowOn(IO)
+    }
+
+    override fun getGoals(): Flow<GoalResponse> {
+        return flow {
+            val goalResponse = api.getGoals()
+            if(goalResponse.status == "success") {
+                updateGoals(goalResponse)
+                emit(goalResponse)
+            } else {
+                throw Error()
+            }
+        }.flowOn(IO)
+    }
+
+    override fun updateProfile(
+        name: String?,
+        phone: String?,
+        email: String?,
+        surname: String?,
+        height: Int?,
+        weight: Int?,
+        age: Int?,
+        gender: String?,
+        goal_id: Int?
+    ): Flow<UpdateProfileResponse> {
+        return flow {
+            val update = api.updateProfile(auth = token, name = name,phone =  phone,email =  email,surname =  surname,height =  height,weight =  weight,age =  age,gender = gender,goal_id =  goal_id)
+            emit(update)
+        }
+    }
+
+    private fun updateGoals(goalResponse: GoalResponse) {
+        try {
+            db.goalResponseDao().insert(goalResponse)
+        }catch (e: Exception){
+            db.goalResponseDao().update(goalResponse)
+        }
+    }
+
+
+    override fun getDB(): AppDatabase {
+        return db
+    }
+
+    private fun updateProfile(profile: Profile) {
+        try {
+            db.profileDao().insert(profile)
+        }catch (e: Exception){
+            db.profileDao().update(profile)
+        }
     }
 
     override suspend fun logOut(): Flow<PasswordRestoreResponse?> {
@@ -123,7 +187,8 @@ class RepositoryImpl(private val api: Api, private val db: AppDatabase): Reposit
                                             "Вариант №3",
                                             "Вариант №4"
                                     )
-                            )}
+                            )
+                        }
                     }
             )
             question.add(Question(type = QuestionType.Comment))

@@ -23,6 +23,7 @@ import kotlinx.coroutines.Dispatchers.Main
 @AndroidEntryPoint
 class LessonScheduleFragment : BaseFragment() {
 
+    @ExperimentalCoroutinesApi
     override val viewModel: LessonScheduleViewModel by navGraphViewModels(R.id.app_navigation) {
         defaultViewModelProviderFactory
     }
@@ -41,6 +42,7 @@ class LessonScheduleFragment : BaseFragment() {
     }
 
     override fun restoreState(savedInstanceState: Bundle?) {
+        viewModel.updateProfile()
 
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/lesson_in_progress_fragment_scene"
-    tools:context=".LessonInProgressFragment">
+    tools:context=".fragments.LessonInProgressFragment">
 
     <Button
         android:id="@+id/back_button"

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LessonInfoFragment">
+    tools:context=".fragments.LessonInfoFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

@@ -3,6 +3,7 @@ package com.app.telemed
 import android.content.Context
 import androidx.room.Room
 import com.app.telemed.models.LoginResponseDao
+import com.app.telemed.models.ProfileDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,14 @@ object AppModule {
         .build()
 
     @Provides
-    fun provideChannelDao(appDatabase: AppDatabase): LoginResponseDao {
+    fun loginResponseDao(appDatabase: AppDatabase): LoginResponseDao {
         return appDatabase.loginDao()
     }
+
+    @Provides
+    fun profileDao(appDatabase: AppDatabase): ProfileDao {
+        return appDatabase.profileDao()
+    }
+
+
 }

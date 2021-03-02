@@ -62,7 +62,7 @@
         tools:layout="@layout/fragment_password_link_sent" />
     <fragment
         android:id="@+id/initSplashFragment"
-        android:name="com.app.telemed.InitSplashFragment"
+        android:name="com.app.telemed.fragments.InitSplashFragment"
         android:label="init_splash_fragment"
         tools:layout="@layout/init_splash_fragment" >
         <action

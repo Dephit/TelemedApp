@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/commentListFragment"
-        android:name="com.app.telemed.CommentListFragment"
+        android:name="com.app.telemed.fragments.CommentListFragment"
         android:label="comment_list_fragment"
         tools:layout="@layout/comment_list_fragment" />
     <action
@@ -16,12 +16,12 @@
         app:popUpTo="@id/profile_navegation.xml" />
     <fragment
         android:id="@+id/loadingFragment"
-        android:name="com.app.telemed.LoadingFragment"
+        android:name="com.app.telemed.fragments.LoadingFragment"
         android:label="fragment_loading"
         tools:layout="@layout/fragment_loading" />
     <fragment
         android:id="@+id/commonDataFragment2"
-        android:name="com.app.telemed.CommonDataFragment"
+        android:name="com.app.telemed.fragments.CommonDataFragment"
         android:label="common_data_fragment"
         tools:layout="@layout/common_data_fragment" />
     <action
@@ -29,7 +29,7 @@
         app:destination="@id/commonDataFragment2" />
     <fragment
         android:id="@+id/promocodeFragment"
-        android:name="com.app.telemed.PromocodeFragment"
+        android:name="com.app.telemed.fragments.PromocodeFragment"
         android:label="promocode_fragment"
         tools:layout="@layout/promocode_fragment" />
     <action
