@@ -20,6 +20,8 @@ import com.app.telemed.models.GoalResponse
 import com.app.telemed.models.Profile
 import com.app.telemed.models.UpdateProfileResponse
 import com.app.telemed.viewModels.CommonDataViewModel
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -49,10 +51,6 @@ class CommonDataFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-
-    }
-
-    override fun manageLoading(b: Boolean) {
         with(binding){
             heightEditText.addTextChangedListener {
                 setButtonEnabled()
@@ -91,6 +89,14 @@ class CommonDataFragment : BaseFragment() {
                 )
                 hideKeyboard()
             }
+        }
+    }
+
+    override fun manageLoading(b: Boolean) {
+        if(b) {
+            binding.submitButton.showProgress { progressColor = getColor(requireContext(), R.color.white)}
+        }else {
+            binding.submitButton.hideProgress(getString(R.string.submit_text))
         }
     }
 
