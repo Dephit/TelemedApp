@@ -55,7 +55,7 @@ android {
             dimension 'telemed'
             applicationIdSuffix '.fitness'
             versionNameSuffix '-fitness'
-            buildConfigField "boolean", "IS_REHUB", "${false}"
+                buildConfigField "boolean", "IS_REHUB", "${false}"
             resValue "string", "app_name", "Fitness TelemedApp"
         }
     }
